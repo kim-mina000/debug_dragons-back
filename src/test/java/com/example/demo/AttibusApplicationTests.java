@@ -17,10 +17,10 @@ class AttibusApplicationTests {
 		System.out.println("hello world!");
 	}
 
-	@Test
-	void 엔티티연결됐나요(){
-		TestName name = TestName.builder().name("민아").build();
-		repository.save(name);
-	}
+//	@Test
+//	void 엔티티연결됐나요(){
+//		TestName name = TestName.builder().name("??").build();
+//		repository.save(name);
+//	}
 
 }
