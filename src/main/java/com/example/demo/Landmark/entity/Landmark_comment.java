@@ -13,7 +13,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Landmart_comment extends BaseEntity {
+public class Landmark_comment extends BaseEntity {
 
 //  여행지 댓글 고유값
     @Id
