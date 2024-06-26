@@ -2,13 +2,8 @@ package com.example.demo.member.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
 import jakarta.persistence.Id;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.time.LocalDateTime;
 
 @Entity
 
@@ -36,5 +31,9 @@ public class Member extends BaseEntity{
 
     @Column(length = 100, nullable = false)
     Boolean user_role;
+
+    @Column(length = 100, nullable = false)
+    String role;
+
 
 }

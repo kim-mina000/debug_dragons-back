@@ -3,7 +3,7 @@ package com.example.demo.Landmark.service;
 import com.example.demo.Landmark.dto.Landmark_commentDTO;
 import com.example.demo.Landmark.entity.Landmark_comment;
 
-public interface Landmark_tegService {
+public interface Landmark_tagService {
     default Landmark_commentDTO dtoToEntity(Landmark_comment entity){
 
         Landmark_commentDTO dto = Landmark_commentDTO.builder()

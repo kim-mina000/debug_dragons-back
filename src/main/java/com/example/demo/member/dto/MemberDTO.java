@@ -24,4 +24,6 @@ public class MemberDTO {
     Boolean user_role;
 
     LocalDateTime regDate;
+
+    String role;
 }
