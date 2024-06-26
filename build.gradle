@@ -45,6 +45,9 @@ dependencies {
 //	테스트를 위한 세팅(Test에 lombok적용을 위함)
 	testAnnotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.projectlombok:lombok'
+
+//	Spring Boot의 테스트 라이브러리
+//	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 tasks.named('test') {
