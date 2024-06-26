@@ -23,7 +23,11 @@ import java.time.LocalDateTime;
 public class Member {
 
     @Id
+<<<<<<< HEAD
     @Column(length = 20)
+=======
+    @Column(length = 50)
+>>>>>>> c3b87829fea3115d6422e77cd85d5bd09572c19b
     String user_id;
 
     @Column(length = 100, nullable = false)
