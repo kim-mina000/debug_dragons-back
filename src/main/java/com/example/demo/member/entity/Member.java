@@ -20,14 +20,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 
-public class Member {
+public class Member extends BaseEntity{
 
     @Id
-<<<<<<< HEAD
     @Column(length = 20)
-=======
-    @Column(length = 50)
->>>>>>> c3b87829fea3115d6422e77cd85d5bd09572c19b
     String user_id;
 
     @Column(length = 100, nullable = false)
@@ -41,8 +37,5 @@ public class Member {
 
     @Column(length = 100, nullable = false)
     Boolean user_role;
-
-    @CreatedDate
-    LocalDateTime regDate;
 
 }
