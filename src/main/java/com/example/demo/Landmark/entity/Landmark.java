@@ -53,4 +53,8 @@ public class Landmark {
 //  위도
     @Column(length = 255,nullable = false)
     String latitude;
+
+//  이미지 경로
+    @Column(length = 1000)
+    String landmark_img_path;
 }

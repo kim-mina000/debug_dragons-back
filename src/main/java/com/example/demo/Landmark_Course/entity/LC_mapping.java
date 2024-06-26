@@ -11,7 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Landmark_course_mapping {
+public class LC_mapping {
 
 //  여행지 고유값 (외래키)
     @Column(length = 11,nullable = false)
