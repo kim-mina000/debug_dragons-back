@@ -31,10 +31,10 @@ public interface MemberService {
                 .user_id(dto.getUser_id())
                 .user_pw(dto.getUser_pw())
                 .user_name(dto.getUser_name())
-                .regDate(dto.getRegDate())
                 .user_profile_image_path(dto.getUser_profile_image_path())
                 .user_role(dto.getUser_role())
                 .build();
+
         return entity;
     }
 
