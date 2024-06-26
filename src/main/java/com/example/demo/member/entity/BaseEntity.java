@@ -22,5 +22,4 @@ public class BaseEntity {
     @LastModifiedDate
     LocalDateTime modDate;
 
-
 }
