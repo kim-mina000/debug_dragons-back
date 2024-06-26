@@ -42,7 +42,7 @@ dependencies {
 	implementation 'javax.xml.bind:jaxb-api:2.3.0'
 	implementation 'net.minidev:json-smart:2.4.7'
 
-//	테스트를 위한 세팅
+//	테스트를 위한 세팅(Test에 lombok적용을 위함)
 	testAnnotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.projectlombok:lombok'
 }
