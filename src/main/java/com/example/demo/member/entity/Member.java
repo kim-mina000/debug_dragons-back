@@ -16,7 +16,8 @@ import lombok.*;
 
 public class Member extends BaseEntity{
 
-    @Id(length = 50)
+    @Id
+    @Column(length = 50)
     String user_id;
 
     @Column(length = 100, nullable = false)
