@@ -30,5 +30,5 @@ public class LandmarkDTO {
 
     String latitude;
 
-    String landmarkImagePath;
+    String landmarkImgPath;
 }

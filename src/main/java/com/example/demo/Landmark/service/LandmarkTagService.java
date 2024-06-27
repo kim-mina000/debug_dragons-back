@@ -1,29 +1,29 @@
 package com.example.demo.Landmark.service;
 
-import com.example.demo.Landmark.dto.LandmarkCommentDTO;
-import com.example.demo.Landmark.entity.LandmarkComment;
+import com.example.demo.Landmark.dto.LandmarkTagDTO;
+import com.example.demo.Landmark.entity.Landmark;
+import com.example.demo.Landmark.entity.LandmarkTag;
 
 public interface LandmarkTagService {
-    default LandmarkCommentDTO dtoToEntity(LandmarkComment entity){
 
-        LandmarkCommentDTO dto = LandmarkCommentDTO.builder()
-                .landmark_comment_no(entity.getLandmark_comment_no())
-                .landmark_no(entity.getLandmark_no())
-                .user_id(entity.getUser_id())
-                .landmark_comment_content(entity.getLandmark_comment_content())
-                .landmark_comment_regDate(entity.getRegDate())
+    default LandmarkTagDTO entityToDto (LandmarkTag entity){
+
+        LandmarkTagDTO dto = LandmarkTagDTO.builder()
+                .landmarkNo(entity.getLandmarkNo().getLandmarkNo())
+                .tagName(entity.getTagName())
                 .build();
 
         return dto;
     }
 
-    default LandmarkComment entityToDto(LandmarkCommentDTO dto){
 
-        LandmarkComment entity = LandmarkComment.builder()
-                .landmark_comment_no(dto.getLandmark_comment_no())
-                .landmark_no(dto.getLandmark_no())
-                .user_id(dto.getUser_id())
-                .landmark_comment_content(dto.getLandmark_comment_content())
+    default LandmarkTag dtoToEntity(LandmarkTagDTO dto){
+
+        Landmark landmark = Landmark.builder().landmarkNo(dto.getLandmarkNo()).build();
+
+        LandmarkTag entity = LandmarkTag.builder()
+                .landmarkNo(landmark)
+                .tagName(dto.getTagName())
                 .build();
 
         return entity;
