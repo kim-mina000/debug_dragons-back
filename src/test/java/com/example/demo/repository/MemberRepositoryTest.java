@@ -17,9 +17,9 @@ public class MemberRepositoryTest {
     @Test
     public void 회원등록(){
         Member member = Member.builder()
-                .user_id("kim")
+                .user_id("애요용")
                 .user_pw("1234")
-                .user_name("김자바")
+                .user_name("냐냐냐")
                 .user_role(false)
                 .build();
 
@@ -29,6 +29,9 @@ public class MemberRepositoryTest {
     @Test
     public void 회원목록조회(){
         List<Member> list =  repository.findAll();
+        for(Member member: list){
+
+        }
     }
 
 }

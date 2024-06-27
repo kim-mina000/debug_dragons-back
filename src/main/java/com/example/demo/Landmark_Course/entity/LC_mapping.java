@@ -2,6 +2,7 @@ package com.example.demo.Landmark_Course.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.*;
 
 @Entity
@@ -22,6 +23,7 @@ public class LC_mapping {
     int course_no;
 
 //  여행코스 내부 순서
+    @Id
     @Column(length = 11,nullable = false)
     int order;
 
