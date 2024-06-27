@@ -5,6 +5,7 @@ import com.example.demo.course.entity.CourseLandmark;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 @Entity
@@ -17,20 +18,19 @@ import lombok.*;
 public class LCMapping {
 
 //  여행지 고유값 (외래키)
-    @Column(length = 11,nullable = false)
+    @ManyToOne
     Landmark landmarkNo;
 
 //  여행지 고유값 (외래키)
-    @Column(length = 11,nullable = false)
+    @ManyToOne
     CourseLandmark courseNo;
 
 //  여행코스 내부 순서
     @Id
-    @Column(length = 11,nullable = false)
-    int order;
+    int orderNumber;
 
-//  마이 페이지 저장 여부
-    @Column
+//   마이페이지 저장 여부
+    @Column(length = 11,nullable = false)
     boolean isSave;
 
 }

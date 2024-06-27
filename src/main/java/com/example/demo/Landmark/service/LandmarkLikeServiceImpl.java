@@ -1,4 +1,4 @@
-package com.example.demo.Landmark.service;
-
-public class LandmarkLikeServiceImpl implements LandmarkLikeService {
-}
+//package com.example.demo.Landmark.service;
+//
+//public class LandmarkLikeServiceImpl implements LandmarkLikeService {
+//}

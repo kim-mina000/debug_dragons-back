@@ -12,7 +12,7 @@ public interface LCMappingService {
         LCMappingDTO dto = LCMappingDTO.builder()
                 .landmarkNo(entity.getLandmarkNo().getLandmarkNo())
                 .courseNo(entity.getCourseNo().getCourseNo())
-                .order(entity.getOrder())
+                .order(entity.getOrderNumber())
                 .isSave(entity.isSave())
                 .build();
 
@@ -28,7 +28,7 @@ public interface LCMappingService {
         LCMapping entity = LCMapping.builder()
                 .landmarkNo(landmark)
                 .courseNo(courseLandmark)
-                .order(dto.getOrder())
+                .orderNumber(dto.getOrder())
                 .isSave(dto.isSave())
                 .build();
 

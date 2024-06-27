@@ -32,7 +32,7 @@ public class LandmarkComment extends BaseEntity {
 //  여행지 댓글 내용
     @Column(length = 11,nullable = false)
     String landmarkCommentContent;
-    
+
 // 여행지 댓글 작성시간
 
 }
