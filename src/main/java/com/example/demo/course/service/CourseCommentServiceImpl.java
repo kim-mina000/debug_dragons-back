@@ -1,7 +1,7 @@
-//package com.example.demo.course.service;
-//
-//import org.springframework.stereotype.Service;
-//
-//@Service
-//public class CourseCommentServiceImpl implements CourseCommentService {
-//}
+package com.example.demo.course.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class CourseCommentServiceImpl implements CourseCommentService {
+}
