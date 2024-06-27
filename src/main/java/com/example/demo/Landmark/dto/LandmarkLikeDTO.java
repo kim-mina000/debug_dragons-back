@@ -12,7 +12,7 @@ public class LandmarkLikeDTO {
 
     int landmarkLikeNo;
 
-    String landmarkNo;
+    int landmarkNo;
 
     String userId;
 }

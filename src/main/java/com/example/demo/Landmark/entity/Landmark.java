@@ -59,4 +59,6 @@ public class Landmark {
 //  이미지 경로
     @Column(length = 1000)
     String landmarkImgPath;
+
+
 }

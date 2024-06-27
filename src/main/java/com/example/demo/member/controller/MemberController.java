@@ -28,6 +28,7 @@ public class MemberController {
 
     @PostMapping("/register")
     public String registerPost(MemberDTO dto, RedirectAttributes redirectAttributes) {
+        System.out.println(dto);
 
         boolean isSuccess = service.register(dto);
 
