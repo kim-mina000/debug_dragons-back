@@ -34,7 +34,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public boolean register(MemberDTO dto) {
-        String id = dto.getUser_id();
+        String id = dto.getUserId();
         MemberDTO getDto = read(id);
         if (getDto != null) {
             System.out.println("사용 중인 아이디 입니다.");
@@ -42,9 +42,8 @@ public class MemberServiceImpl implements MemberService {
         }
         Member entity = dtoToEntity(dto);
 
-        String enPw = passwordEncoder.encode(entity.getUser_pw());
-        entity.setUser_pw(enPw);
-
+        String enPw = passwordEncoder.encode(entity.getUserPw());
+        entity.getUserPw();
         repository.save(entity);
         return true;
     }
