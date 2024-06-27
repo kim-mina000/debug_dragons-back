@@ -18,7 +18,7 @@ public class LandmarkLike {
 
     //  여행지 idx
     @Id
-    int landmark_likeNo;
+    int landmarkLikeNo;
 
     //  여행지 고유값 (외래키)
     @ManyToOne

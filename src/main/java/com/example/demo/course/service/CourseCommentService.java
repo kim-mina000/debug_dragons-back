@@ -2,31 +2,37 @@ package com.example.demo.course.service;
 
 import com.example.demo.course.dto.CourseCommentDTO;
 import com.example.demo.course.entity.CourseComment;
+import com.example.demo.course.entity.CourseLandmark;
+import com.example.demo.member.entity.Member;
 
 public interface CourseCommentService {
 
-    default CourseCommentDTO entityToDto(CourseComment entity){
-
-        CourseCommentDTO dto = CourseCommentDTO.builder()
-                .course_comment_no(entity.getCourse_comment_no())
-                .course_no(entity.getCourse_no())
-                .user_id(entity.getUser_id())
-                .course_comment_content(entity.getCourse_comment_content())
-                .course_comment_regDate(entity.getRegDate())
-                .build();
-
-        return dto;
-    }
-
     default CourseComment dtoToEntity(CourseCommentDTO dto){
 
+        CourseLandmark courseLandmark = CourseLandmark.builder().courseNo(dto.getCourseNo()).build();
+
+        Member member = Member.builder().userId(dto.getUserId()).build();
+
         CourseComment entity = CourseComment.builder()
-                .course_comment_no(dto.getCourse_comment_no())
-                .course_no(dto.getCourse_no())
-                .user_id(dto.getUser_id())
-                .course_comment_content(dto.getCourse_comment_content())
+                .courseCommentNo(dto.getCourseCommentNo())
+                .courseNo(courseLandmark)
+                .userId(member)
+                .courseCommentContent(dto.getCourseCommentContent())
                 .build();
 
         return entity;
+
+    }
+
+    default CourseCommentDTO entityTodto(CourseComment entity){
+        CourseCommentDTO dto = CourseCommentDTO.builder()
+                .courseCommentNo(entity.getCourseCommentNo())
+                .courseNo(entity.getCourseNo().getCourseNo())
+                .userId(entity.getUserId().getUserId())
+                .courseCommentContent(entity.getCourseCommentContent())
+                .build();
+
+        return dto;
+
     }
 }

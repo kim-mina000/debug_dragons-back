@@ -1,9 +1,11 @@
 package com.example.demo.course.entity;
 
 import com.example.demo.member.entity.BaseEntity;
+import com.example.demo.member.entity.Member;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 @Entity
@@ -19,8 +21,8 @@ public class CourseLandmark extends BaseEntity {
     int courseNo;
 
 //  유저 아이디 (외래키)
-    @Column(length = 11,nullable = false)
-    String userId;
+    @ManyToOne
+    Member writer;
 
 //  여행지 코스 작성시간
 }

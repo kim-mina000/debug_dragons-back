@@ -2,28 +2,36 @@ package com.example.demo.course.service;
 
 import com.example.demo.Landmark.dto.LandmarkLikeDTO;
 import com.example.demo.Landmark.entity.LandmarkLike;
+import com.example.demo.course.dto.CourseLikeDTO;
+import com.example.demo.course.entity.CourseLandmark;
+import com.example.demo.course.entity.CourseLike;
+import com.example.demo.member.entity.Member;
 
 public interface CourseLikeService {
 
-    default LandmarkLikeDTO dtoToEntity(LandmarkLike entity){
+    default CourseLike dtoToEntity(CourseLikeDTO dto){
 
-        LandmarkLikeDTO dto = LandmarkLikeDTO.builder()
-                .landmark_like_no(entity.getLandmark_like_no())
-                .landmark_no(entity.getLandmark_no())
-                .user_id(entity.getUser_id())
+        CourseLandmark couresLandmark = CourseLandmark.builder().courseNo(dto.getCourseNo()).build();
+
+        Member member = Member.builder().userId(dto.getUserId()).build();
+
+        CourseLike entity = CourseLike.builder()
+                .courseLikeNo(dto.getCourseLikeNo())
+                .courseNo(couresLandmark)
+                .userId(member)
+                .build();
+
+        return entity;
+    }
+
+    default CourseLikeDTO entityToDTO(CourseLike entity){
+        CourseLikeDTO dto = CourseLikeDTO.builder()
+                .courseLikeNo(entity.getCourseLikeNo())
+                .courseNo(entity.getCourseNo().getCourseNo())
+                .userId(entity.getUserId().getUserId())
                 .build();
 
         return dto;
     }
 
-    default LandmarkLike entityToDto(LandmarkLikeDTO dto){
-
-        LandmarkLike entity = LandmarkLike.builder()
-                .landmark_like_no(dto.getLandmark_like_no())
-                .landmark_no(dto.getLandmark_no())
-                .user_id(dto.getUser_id())
-                .build();
-
-        return entity;
-    }
 }
