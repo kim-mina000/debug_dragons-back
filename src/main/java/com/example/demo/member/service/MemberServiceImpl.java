@@ -43,7 +43,8 @@ public class MemberServiceImpl implements MemberService {
         Member entity = dtoToEntity(dto);
 
         String enPw = passwordEncoder.encode(entity.getUserPw());
-        entity.getUserPw();
+        entity.setUserPw(enPw);
+
         repository.save(entity);
         return true;
     }

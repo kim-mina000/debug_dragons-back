@@ -16,11 +16,12 @@ import lombok.*;
 public class LandmarkTag {
 
     //  여행지 고유값 (외래키)
-    @Id
+
     @ManyToOne
     Landmark landmarkNo;
 
     //  태그네임
+    @Id
     @Column(length = 11, nullable = false)
     String tagName;
 }

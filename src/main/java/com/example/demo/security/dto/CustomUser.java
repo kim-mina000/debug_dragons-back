@@ -11,8 +11,8 @@ import java.util.Arrays;
 public class CustomUser extends User {
 
   public CustomUser(MemberDTO dto) {
-	super(dto.getUserId(), dto.getUserPw(), Arrays.asList(new SimpleGrantedAuthority()));
+	super(dto.getUserId(), dto.getUserPw(), Arrays.asList(new SimpleGrantedAuthority(dto.getUserRole().toString())));
   }
-
+  
 }
 

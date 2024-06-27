@@ -6,14 +6,12 @@ import jakarta.persistence.Id;
 import lombok.*;
 
 @Entity
-
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
 public class Member extends BaseEntity{
 
     @Id

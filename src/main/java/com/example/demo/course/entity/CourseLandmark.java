@@ -2,7 +2,6 @@ package com.example.demo.course.entity;
 
 import com.example.demo.member.entity.BaseEntity;
 import com.example.demo.member.entity.Member;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;

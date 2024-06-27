@@ -1,7 +1,5 @@
 package com.example.demo.course.service;
 
-import com.example.demo.Landmark.dto.LandmarkLikeDTO;
-import com.example.demo.Landmark.entity.LandmarkLike;
 import com.example.demo.course.dto.CourseLikeDTO;
 import com.example.demo.course.entity.CourseLandmark;
 import com.example.demo.course.entity.CourseLike;

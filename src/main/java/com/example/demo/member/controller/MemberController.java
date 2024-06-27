@@ -26,6 +26,7 @@ public class MemberController {
         return "/member/register";
     }
 
+
     @PostMapping("/register")
     public String registerPost(MemberDTO dto, RedirectAttributes redirectAttributes) {
         System.out.println(dto);
