@@ -3,13 +3,13 @@ package com.example.demo.Landmark.service;
 import com.example.demo.Landmark.dto.LandmarkCommentDTO;
 import com.example.demo.Landmark.entity.LandmarkComment;
 
-public interface LandmarkService {
+public interface LandmarkTagService {
     default LandmarkCommentDTO dtoToEntity(LandmarkComment entity){
 
         LandmarkCommentDTO dto = LandmarkCommentDTO.builder()
                 .landmark_comment_no(entity.getLandmark_comment_no())
                 .landmark_no(entity.getLandmark_no())
-                .user_id(entity.getWriter().getUser_id())
+                .user_id(entity.getUser_id())
                 .landmark_comment_content(entity.getLandmark_comment_content())
                 .landmark_comment_regDate(entity.getRegDate())
                 .build();

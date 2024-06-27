@@ -10,25 +10,25 @@ import lombok.*;
 @Builder
 public class LandmarkDTO {
 
-    int landmark_no;
+    int landmarkNo;
 
-    String user_id;
+    String userId;
 
-    boolean landmark_origin;
+    boolean landmarkOrigin;
 
-    String landmark_name;
+    String landmarkName;
 
-    String landmark_address;
+    String landmarkAddress;
 
-    int landmark_phone;
+    int landmarkPhone;
 
-    String landmark_short_desc;
+    String landmarkShortDesc;
 
-    String landmart_desc;
+    String landmarkDesc;
 
     String longitude;
 
     String latitude;
 
-    String landmark_image_path;
+    String landmarkImagePath;
 }

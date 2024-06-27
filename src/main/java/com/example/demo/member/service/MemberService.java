@@ -15,12 +15,12 @@ public interface MemberService {
 //    Entity -> DTO  몇버전 이후 부터 디폴트넣으면 일반 함수개능
     default MemberDTO entityToDto(Member entity){
         MemberDTO dto = MemberDTO.builder()
-                .user_id(entity.getUser_id())
-                .user_pw(entity.getUser_pw())
-                .user_name(entity.getUser_name())
+                .userId(entity.getUserId())
+                .userPw(entity.getUserPw())
+                .userName(entity.getUserName())
                 .regDate(entity.getRegDate())
-                .user_profile_image_path(entity.getUser_profile_image_path())
-                .user_role(entity.getUser_role())
+                .userProfileImagePath(entity.getUserProfileImagePath())
+                .userRole(entity.getUserRole())
                 .build();
 
         return dto;
@@ -28,11 +28,11 @@ public interface MemberService {
 
     default Member dtoToEntity(MemberDTO dto){
         Member entity = Member.builder()
-                .user_id(dto.getUser_id())
-                .user_pw(dto.getUser_pw())
-                .user_name(dto.getUser_name())
-                .user_profile_image_path(dto.getUser_profile_image_path())
-                .user_role(dto.getUser_role())
+                .userId(dto.getUserId())
+                .userPw(dto.getUserPw())
+                .userName(dto.getUserName())
+                .userProfileImagePath(dto.getUserProfileImagePath())
+                .userRole(dto.getUserRole())
                 .build();
 
         return entity;
