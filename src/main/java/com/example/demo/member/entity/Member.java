@@ -18,19 +18,18 @@ public class Member extends BaseEntity{
 
     @Id
     @Column(length = 20)
-    String user_id;
+    String userId;
 
     @Column(length = 100, nullable = false)
-    String user_pw;
+    String userPw;
 
     @Column(length = 100, nullable = false)
-    String user_name;
+    String userName;
 
     @Column(length = 1000)
-    String user_profile_image_path;
+    String userProfileImagePath;
 
     @Column(length = 100, nullable = false)
-    Boolean user_role;
-
+    Boolean userRole;
 
 }

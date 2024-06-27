@@ -13,17 +13,16 @@ import java.time.LocalDateTime;
 
 public class MemberDTO {
 
-    String user_id;
+    String userId;
 
-    String user_name;
+    String userName;
 
-    String user_pw;
+    String userPw;
 
-    String user_profile_image_path;
+    String userProfileImagePath;
 
-    Boolean user_role;
+    Boolean userRole;
 
     LocalDateTime regDate;
 
-    String role;
 }
