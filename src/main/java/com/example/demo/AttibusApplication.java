@@ -12,5 +12,4 @@ public class AttibusApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AttibusApplication.class, args);
 	}
-
 }

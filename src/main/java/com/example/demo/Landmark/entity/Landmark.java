@@ -1,10 +1,8 @@
 package com.example.demo.Landmark.entity;
 
+import com.example.demo.member.entity.BaseEntity;
 import com.example.demo.member.entity.Member;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -14,10 +12,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Landmark {
+public class Landmark  extends BaseEntity {
 
 //  여행지 idx
     @Id
+    @GeneratedValue(strategy =GenerationType.IDENTITY)
     int landmarkNo;
 
 //  유저 아이디 (외래키)
@@ -56,9 +55,9 @@ public class Landmark {
     @Column(length = 255,nullable = false)
     String latitude;
 
-//  이미지 경로
+//  이미지 경로 : 첨부파일이름
     @Column(length = 1000)
-    String landmarkImgPath;
+    private String landmarkImgPath;
 
 
 }

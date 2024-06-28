@@ -51,8 +51,12 @@ dependencies {
 	testAnnotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.projectlombok:lombok'
 
+//	타임리프
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+
 //	Spring Boot의 테스트 라이브러리
-//	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 tasks.named('test') {
