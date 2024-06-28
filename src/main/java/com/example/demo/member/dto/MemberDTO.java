@@ -25,4 +25,6 @@ public class MemberDTO {
 
     LocalDateTime regDate;
 
+    String userEmail;
+
 }

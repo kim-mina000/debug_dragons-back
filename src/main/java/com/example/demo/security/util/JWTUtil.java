@@ -8,6 +8,8 @@ import lombok.extern.log4j.Log4j2;
 
 import java.time.ZonedDateTime;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 // JWT 생성, 유효성 검증
 
@@ -17,7 +19,21 @@ public class JWTUtil {
     private String secretKey = "zerock12345678";
 
     //1month
-    private long expire = 60 * 24* 30;
+    private long expire = 60 * 24* 1;
+
+    //로그아웃된 토큰 리스트
+    private Set<String> blacklist = new HashSet<>();
+
+    //로그아웃시 블랙 리스트에 추가
+    public void invalidateToken(String token) {
+        blacklist.add(token);
+    }
+
+    // 블랙 리스트에 포함되어 있는지 확인
+    public boolean isTokenInvalid(String token) {
+        return blacklist.contains(token);
+    }
+
 
     public String generateToken(String content) throws Exception{
 

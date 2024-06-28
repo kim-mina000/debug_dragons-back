@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,6 +24,7 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 import java.io.IOException;
 
@@ -53,35 +55,42 @@ public class SecurityConfig {
 
 	@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		
+
 		// 1.인증 필터 등록: /member 또는 /board 요청이 들어오면 사용자 인증 실행
-		String[] arr = {"/member/*"};
+		String[] arr = {};
 		http.addFilterBefore(new ApiCheckFilter(arr, jwtUtil(), customUserDetailsService()), UsernamePasswordAuthenticationFilter.class);
-		
+
 		// 2.권한 설정: 회원등록-아무나, 게시물-user, 회원-admin
+		// "/member/register"으로 회원등록 POST요청옴
 		http
          .authorizeHttpRequests()
-         .requestMatchers("/member/*").permitAll()
+         .requestMatchers("/member/*","/login").permitAll()
          .anyRequest().authenticated()
-         
+
          .and()
          .csrf().disable() //csrf 비활성화
          //토큰을 사용하니까 세션은 사용안함
-         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
+//				로그아웃 구현
+				.and()
+				.logout()
+				.logoutUrl("/logout")
+				.logoutSuccessHandler(logoutSuccessHandler());
 
         // 3.로그인 필터 등록: 로그인 요청이 들어오면 토큰 발급
-
+		System.out.println("2222");
 		// 인증매니저 생성
  		AuthenticationManagerBuilder authenticationManagerBuilder = http
- 				.getSharedObject(AuthenticationManagerBuilder.class);	
- 		authenticationManagerBuilder.userDetailsService(customUserDetailsService()).passwordEncoder(passwordEncoder());	
+ 				.getSharedObject(AuthenticationManagerBuilder.class);
+ 		authenticationManagerBuilder.userDetailsService(customUserDetailsService()).passwordEncoder(passwordEncoder());
  		AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
 
  		// 인증매니저 등록
  		http.authenticationManager(authenticationManager);
- 		
  		// 로그인 필터 생성: /api/login 요청이 들어오면 필터 실행
-		ApiLoginFilter apiLoginFilter = new ApiLoginFilter("/api/login", jwtUtil());
+		ApiLoginFilter apiLoginFilter = new ApiLoginFilter("/login", jwtUtil());
+		System.out.println("apiLoginFilter:: "+apiLoginFilter);
 		apiLoginFilter.setAuthenticationManager(authenticationManager);
 
 		// Username~Filter: 사용자 이름과 비밀번호를 사용하는 시큐리티의 기본 필터
@@ -99,19 +108,19 @@ public class SecurityConfig {
 	// 접근 권한이 없을 때 처리할 핸들러 생성
 	@Bean
 	public AccessDeniedHandler accessDeniedHandler() {
-		
+
 		// 익명 클래스 생성
 		AccessDeniedHandler handler = new AccessDeniedHandler () {
 
 			@Override
 			public void handle(HttpServletRequest request, HttpServletResponse response,
 					AccessDeniedException accessDeniedException) throws IOException, ServletException {
-				
+
 				response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 				response.setCharacterEncoding("utf-8");
 				response.setContentType("text/html; charset=UTF-8");
-				response.getWriter().write("권한이 없는 사용자입니다.");	
-			}			
+				response.getWriter().write("권한이 없는 사용자입니다.");
+			}
 		};
 		return handler;
 	}
@@ -119,13 +128,13 @@ public class SecurityConfig {
 	// 인증에 실패했을 때 처리
 	@Bean
 	public AuthenticationEntryPoint authenticationEntryPoint() {
-		
+
 		AuthenticationEntryPoint handler = new AuthenticationEntryPoint() {
 
 			@Override
 			public void commence(HttpServletRequest request, HttpServletResponse response,
 					AuthenticationException authException) throws IOException, ServletException {
-			
+
 				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 				response.setCharacterEncoding("utf-8");
 				response.setContentType("text/html; charset=UTF-8");
@@ -134,5 +143,34 @@ public class SecurityConfig {
 		};
 		return handler;
 	}
+
+
+	@Bean
+	public LogoutSuccessHandler logoutSuccessHandler() {
+
+		LogoutSuccessHandler handler = new LogoutSuccessHandler() {
+
+			@Override
+			public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response,
+										Authentication authentication) throws IOException, ServletException {
+
+				String token = request.getHeader("Authorization");
+				if (token != null) {
+					jwtUtil().invalidateToken(token);
+					response.setStatus(HttpServletResponse.SC_OK);
+					response.setContentType("text/html; charset=UTF-8");
+					response.getWriter().write("로그아웃에 성공했습니다. 더이상 해당 토큰을 사용할 수 없습니다.");
+				} else {
+					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+					response.setContentType("text/html; charset=UTF-8");
+					response.getWriter().write("헤더에 토큰이 없어 로그아웃에 실패했습니다");
+				}
+
+			}
+		};
+
+		return handler;
+	}
+
 
 }

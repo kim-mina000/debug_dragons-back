@@ -40,7 +40,7 @@ public class CORSFilter extends OncePerRequestFilter {
 		if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
 			response.setStatus(HttpServletResponse.SC_OK);
 		} else {
-			// 다른 요청(GET,POST,PUT,DELETE)는 그대로 처리 
+			// 다른 요청(GET,POST,PUT,DELETE)는 그대로 처리
 			filterChain.doFilter(request, response);
 		}
 

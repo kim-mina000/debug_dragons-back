@@ -35,13 +35,13 @@ public class ApiLoginFilter extends AbstractAuthenticationProcessingFilter {
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException, IOException, ServletException {
 
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		
+		String id = request.getParameter("userId");
+		String pw = request.getParameter("userPw");
+
 		if(id == null) {
 			throw new BadCredentialsException("id cannot be null");
 		}
-		
+
 		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(id, pw);
 
 		return getAuthenticationManager().authenticate(authToken);
@@ -57,20 +57,24 @@ public class ApiLoginFilter extends AbstractAuthenticationProcessingFilter {
         log.info(authResult.getPrincipal());
 
         //email address
-        String email = ((CustomUser)authResult.getPrincipal()).getUsername();
+        String userId = ((CustomUser)authResult.getPrincipal()).getUsername();
 
         String token = null;
         try {
-            token = jwtUtil.generateToken(email);
+            token = jwtUtil.generateToken(userId);
 
-            response.setContentType("text/plain");
-            response.getOutputStream().write(token.getBytes());
+            String data = token + "USERID" +userId;
+
+            response.setContentType("text/plain"); // 원래설정 text/plain 단순 텍스트값을 넘길때
+            response.getOutputStream().write(data.getBytes());
+
 
             log.info(token);
-            
-         // JWT 토큰 생성 및 응답 헤더에 추가
-            response.setHeader("Authorization", "Bearer " + token);
+            log.info(data);
 
+         // JWT 토큰 생성 및 응답 헤더에 추가
+//            response.setHeader("Authorization", "Bearer " + data);
+            response.setHeader("Authorization", "Bearer " + token);
 
         } catch (Exception e) {
             e.printStackTrace();

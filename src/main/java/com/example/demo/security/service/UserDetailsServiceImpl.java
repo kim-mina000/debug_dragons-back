@@ -31,8 +31,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		MemberDTO dto = service.read(userName);
 
 		if(dto == null) {
+			System.out.println("no user!");
 			throw new UsernameNotFoundException(""); //사용자 정보가 없다면 에러를 발생시킴
 		} else {
+			System.out.println("yes user!");
 			return new CustomUser(dto); //dto를 인증객체로 변환하여 반환
 		}
 

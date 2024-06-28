@@ -37,7 +37,7 @@ public class MemberRepositoryTest {
 
     @Test
     public void 회원1건조회(){
-        Optional<Member> result = repository.findById("park");
+        Optional<Member> result = repository.findById("11");
         if (result.isPresent()){
             Member member = result.get();
             System.out.println(member);

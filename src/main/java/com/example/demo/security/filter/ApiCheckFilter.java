@@ -40,7 +40,7 @@ public class ApiCheckFilter extends OncePerRequestFilter {
 
 	// 토큰이 유효한지 확인하는 메소드
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+	public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 
 		log.info("REQUESTURI: " + request.getRequestURI());
@@ -57,6 +57,7 @@ public class ApiCheckFilter extends OncePerRequestFilter {
 
 				// 토큰이 유효한지 확인
 				boolean checkHeader = checkAuthHeader(request);
+				log.info(checkHeader);
 
 				// 토큰이 유효하면 인증 객체를 생성해서 컨테이너에 담기 (컨테이너에 안담으면 다음 필터에서 에러남)
 				if (checkHeader) {
@@ -72,8 +73,8 @@ public class ApiCheckFilter extends OncePerRequestFilter {
 
 					filterChain.doFilter(request, response);
 					return;
-					
-				// 토큰이 유효하지 않으면 에러메시지 반환	
+
+				// 토큰이 유효하지 않으면 에러메시지 반환
 				} else {
 					response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 					// 실패 메세지 반환
@@ -98,13 +99,13 @@ public class ApiCheckFilter extends OncePerRequestFilter {
 	private boolean checkAuthHeader(HttpServletRequest request) {
 
 		boolean checkResult = false;
-		
+
 		//요청 메세지에서 인증키 꺼내기
 		String authHeader = request.getHeader("Authorization");
-		
+
 		//값이 있는지 확인
 		if (StringUtils.hasText(authHeader)) {
-			
+
 			//토큰에서 사용자 아이디 추출
 			try {
 				String email = jwtUtil.validateAndExtract(authHeader);

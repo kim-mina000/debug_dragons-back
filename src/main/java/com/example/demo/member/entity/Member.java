@@ -30,4 +30,9 @@ public class Member extends BaseEntity{
     @Column(length = 100, nullable = false)
     Boolean userRole;
 
+    @Column(length = 100)
+    String userEmail;
+
+
+
 }

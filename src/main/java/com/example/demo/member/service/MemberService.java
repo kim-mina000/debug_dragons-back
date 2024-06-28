@@ -21,6 +21,7 @@ public interface MemberService {
                 .regDate(entity.getRegDate())
                 .userProfileImagePath(entity.getUserProfileImagePath())
                 .userRole(entity.getUserRole())
+                .userEmail(entity.getUserEmail())
                 .build();
 
         return dto;
@@ -33,6 +34,7 @@ public interface MemberService {
                 .userName(dto.getUserName())
                 .userProfileImagePath(dto.getUserProfileImagePath())
                 .userRole(dto.getUserRole())
+                .userEmail(dto.getUserEmail())
                 .build();
 
         return entity;
