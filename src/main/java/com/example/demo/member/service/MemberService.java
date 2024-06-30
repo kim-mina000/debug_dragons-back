@@ -12,7 +12,7 @@ public interface MemberService {
 
     MemberDTO read(String id);  //회원 한놈 조회;
 
-//    Entity -> DTO  몇버전 이후 부터 디폴트넣으면 일반 함수개능
+//    Entity -> DTO  몇버전 이후 부터 디폴트넣으면 일반 함수가능
     default MemberDTO entityToDto(Member entity){
         MemberDTO dto = MemberDTO.builder()
                 .userId(entity.getUserId())

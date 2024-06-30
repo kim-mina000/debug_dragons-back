@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RestController     // @Controller + @responsebody
+//@RestController     // @Controller + @responsebody
+@Controller
 @RequestMapping("/member")
 public class MemberController {
 
@@ -50,7 +52,7 @@ public class MemberController {
 
 
 
-    @GetMapping("/member/read")	//주소 어떻게하는지 질문요망
+    @GetMapping("/member/read")
     public void read(@RequestParam(name = "id") String id, @RequestParam(name = "page", defaultValue = "0") int page, Model model) { //파라미터 추가
         MemberDTO dto = service.read(id);
         model.addAttribute("dto", dto);
