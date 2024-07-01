@@ -28,7 +28,7 @@ public class Member extends BaseEntity{
     String userProfileImagePath;
 
     @Column(length = 100, nullable = false)
-    Boolean userRole;
+    String userRole;
 
     @Column(length = 100)
     String userEmail;

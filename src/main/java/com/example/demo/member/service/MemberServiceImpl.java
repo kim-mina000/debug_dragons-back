@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
-@Service
+//@Service
 public class MemberServiceImpl implements MemberService {
 
     @Autowired
@@ -42,6 +42,7 @@ public class MemberServiceImpl implements MemberService {
         }
         Member entity = dtoToEntity(dto);
 
+//        패스워드 인코더로 패스워드 암호화하기
         String enPw = passwordEncoder.encode(entity.getUserPw());
         entity.setUserPw(enPw);
 

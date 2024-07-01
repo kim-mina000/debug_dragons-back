@@ -18,6 +18,11 @@ public class MemberController {
     @Autowired
     private MemberService service;
 
+    @GetMapping("/register")
+    public String register(){
+        return "member/register";
+    }
+
 //  회원가입
     @PostMapping("/register")
     public ResponseEntity<Boolean> registerPost(@RequestBody MemberDTO dto
@@ -43,14 +48,6 @@ public class MemberController {
         Page<MemberDTO> list = service.getList(page);
         model.addAttribute("list", list);
     }
-
-    @GetMapping("/register")
-    public String register() {
-        return "/member/register";
-    }
-
-
-
 
     @GetMapping("/member/read")
     public void read(@RequestParam(name = "id") String id, @RequestParam(name = "page", defaultValue = "0") int page, Model model) { //파라미터 추가

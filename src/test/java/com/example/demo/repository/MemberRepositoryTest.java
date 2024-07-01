@@ -2,6 +2,7 @@ package com.example.demo.repository;
 
 import com.example.demo.member.entity.Member;
 import com.example.demo.member.repository.MemberRepository;
+import com.example.demo.member.service.MemberServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,13 +16,16 @@ public class MemberRepositoryTest {
     @Autowired
     MemberRepository repository;
 
+    @Autowired
+    MemberServiceImpl service;
+
     @Test
     public void 회원등록(){
         Member member = Member.builder()
-                .userId("choi")
+                .userId("user2")
                 .userPw("1234")
-                .userName("최개발")
-                .userRole(false)
+                .userName("김사용자")
+                .userRole("ROLE_USER")
                 .build();
 
         repository.save(member);

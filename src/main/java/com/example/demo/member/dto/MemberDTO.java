@@ -21,7 +21,7 @@ public class MemberDTO {
 
     String userProfileImagePath;
 
-    Boolean userRole;
+    String userRole;
 
     LocalDateTime regDate;
 

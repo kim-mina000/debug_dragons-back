@@ -1,5 +1,7 @@
 package com.example.demo.config;
 
+import com.example.demo.member.service.MemberService;
+import com.example.demo.member.service.MemberServiceImpl;
 import com.example.demo.security.filter.ApiCheckFilter;
 import com.example.demo.security.filter.ApiLoginFilter;
 import com.example.demo.security.service.UserDetailsServiceImpl;
@@ -53,6 +55,13 @@ public class SecurityConfig {
 		return new JWTUtil();
 	}
 
+	//멤버서비스 빈 등록
+	//: 서버 시작되면 가장 먼저 동작 되기에 MemberServiceImpl.java @Service 지우고(주석처리함) 여기에 등록 후 사용해요!
+	@Bean
+	public MemberService memberService(){
+		return new MemberServiceImpl();
+	}
+	
 	@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
@@ -89,7 +98,10 @@ public class SecurityConfig {
  		// 인증매니저 등록
  		http.authenticationManager(authenticationManager);
  		// 로그인 필터 생성: /api/login 요청이 들어오면 필터 실행
-		ApiLoginFilter apiLoginFilter = new ApiLoginFilter("/login", jwtUtil());
+		
+		
+		// 로그인 필터생성할 때, 멤버서비스 전달
+		ApiLoginFilter apiLoginFilter = new ApiLoginFilter("/login", jwtUtil(), memberService());
 		System.out.println("apiLoginFilter:: "+apiLoginFilter);
 		apiLoginFilter.setAuthenticationManager(authenticationManager);
 
@@ -138,7 +150,7 @@ public class SecurityConfig {
 				response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 				response.setCharacterEncoding("utf-8");
 				response.setContentType("text/html; charset=UTF-8");
-				response.getWriter().write("인증되지 않은 사용자입니다.");
+				response.getWriter().write("인증되지 않은 사용자입니다!!!!");
 			}
 		};
 		return handler;
@@ -171,6 +183,8 @@ public class SecurityConfig {
 
 		return handler;
 	}
+
+
 
 
 }
