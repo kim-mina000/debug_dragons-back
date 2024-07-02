@@ -41,19 +41,24 @@ public class MemberController {
     }
 
 
-
-
     @GetMapping("/member/list")
     public void list(@RequestParam(name = "page", defaultValue = "0")int page, Model model){
         Page<MemberDTO> list = service.getList(page);
         model.addAttribute("list", list);
     }
 
-    @GetMapping("/member/read")
-    public void read(@RequestParam(name = "id") String id, @RequestParam(name = "page", defaultValue = "0") int page, Model model) { //파라미터 추가
-        MemberDTO dto = service.read(id);
-        model.addAttribute("dto", dto);
-        model.addAttribute("page", page);
+//    @GetMapping("/member/read")
+//    public void read(@RequestParam(name = "id") String userId, @RequestParam(name = "page", defaultValue = "0") int page, Model model) { //파라미터 추가
+//        MemberDTO dto = service.read(id);
+//        model.addAttribute("dto", dto);
+//        model.addAttribute("page", page);
+//    }
+
+    @ResponseBody
+    @GetMapping("/findUserId")
+    public String findUserId(@RequestParam String userName, @RequestParam String userEmail) {
+        return service.findId(userName, userEmail);
     }
+
 
 }

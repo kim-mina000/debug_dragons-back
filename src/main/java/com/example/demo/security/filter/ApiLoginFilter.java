@@ -81,8 +81,8 @@ public class ApiLoginFilter extends AbstractAuthenticationProcessingFilter {
 
 //         해쉬맵 이용하여 token과 user정보 넘기기. 해쉬맵 안에 담은 후 Json으로 변환 후 넘겨요 !
             HashMap<String, Object> data = new HashMap<>();
-            data.put("tokenT", token.getBytes("UTF-8"));    //토큰 바이트로 변환해주시고,
-            data.put("userU", member);
+            data.put("token", token);    //토큰 바이트로 변환하지 마시고, 문자열 그대로
+            data.put("user", member);
 
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");

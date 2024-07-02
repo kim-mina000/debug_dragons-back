@@ -63,6 +63,17 @@ public class MemberRepositoryTest {
         repository.deleteById("choi");
     }
 
+    @Test
+    public void 아이디찾기(){
+        String mm = repository.get("김아띠", "kimyslive7@naver.com");
+        System.out.println("찾는 Id: " + mm);
+    }
+
+//    @Test
+//    public void 아이디중복체크(){
+//
+//    }
+
 //    @Test
 //    public void 관계설정_회원삭제(){
 //        Member member = Member.builder().user_id("park").build();

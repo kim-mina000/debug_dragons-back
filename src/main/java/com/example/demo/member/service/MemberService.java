@@ -4,6 +4,8 @@ import com.example.demo.member.dto.MemberDTO;
 import com.example.demo.member.entity.Member;
 import org.springframework.data.domain.Page;
 
+import java.util.Optional;
+
 public interface MemberService {
 
     Page<MemberDTO> getList(int pageNumber);    //회원 목록조회
@@ -11,6 +13,9 @@ public interface MemberService {
     boolean register(MemberDTO dto);    //회원등록;
 
     MemberDTO read(String id);  //회원 한놈 조회;
+
+    String findId(String userName, String userEmail);   //ID 찾기
+
 
 //    Entity -> DTO  몇버전 이후 부터 디폴트넣으면 일반 함수가능
     default MemberDTO entityToDto(Member entity){

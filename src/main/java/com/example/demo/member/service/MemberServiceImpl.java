@@ -3,6 +3,7 @@ package com.example.demo.member.service;
 import com.example.demo.member.dto.MemberDTO;
 import com.example.demo.member.entity.Member;
 import com.example.demo.member.repository.MemberRepository;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -45,7 +46,6 @@ public class MemberServiceImpl implements MemberService {
 //        패스워드 인코더로 패스워드 암호화하기
         String enPw = passwordEncoder.encode(entity.getUserPw());
         entity.setUserPw(enPw);
-
         repository.save(entity);
         return true;
     }
@@ -61,4 +61,12 @@ public class MemberServiceImpl implements MemberService {
             }
     }
 
+    @Override
+    public String findId(String userName, String userEmail) {
+        return repository.get(userName,userEmail);
+    }
+
 }
+
+
+
