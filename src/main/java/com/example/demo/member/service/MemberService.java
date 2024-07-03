@@ -4,8 +4,6 @@ import com.example.demo.member.dto.MemberDTO;
 import com.example.demo.member.entity.Member;
 import org.springframework.data.domain.Page;
 
-import java.util.Optional;
-
 public interface MemberService {
 
     Page<MemberDTO> getList(int pageNumber);    //회원 목록조회
@@ -16,6 +14,7 @@ public interface MemberService {
 
     String findId(String userName, String userEmail);   //ID 찾기
 
+    boolean checkDuplicate(String id);
 
 //    Entity -> DTO  몇버전 이후 부터 디폴트넣으면 일반 함수가능
     default MemberDTO entityToDto(Member entity){

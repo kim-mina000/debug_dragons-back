@@ -54,11 +54,21 @@ public class MemberController {
 //        model.addAttribute("page", page);
 //    }
 
-    @ResponseBody
+
     @GetMapping("/findUserId")
     public String findUserId(@RequestParam String userName, @RequestParam String userEmail) {
         return service.findId(userName, userEmail);
     }
+
+    @PostMapping("/check-duplicate")
+    public ResponseEntity<Boolean> checkIdDuplicate(@RequestBody String userIds){
+        String userId = userIds.substring(0,userIds.length()-1);
+        // isDuplicate가 true 라면 중복된것! false 일때 통과
+        boolean isDuplicate = service.checkDuplicate(userId);
+        System.out.println(isDuplicate);
+
+        return new ResponseEntity<>(isDuplicate, HttpStatus.OK);
+    };
 
 
 }
