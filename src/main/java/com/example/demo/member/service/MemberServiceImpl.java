@@ -3,13 +3,11 @@ package com.example.demo.member.service;
 import com.example.demo.member.dto.MemberDTO;
 import com.example.demo.member.entity.Member;
 import com.example.demo.member.repository.MemberRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
@@ -64,6 +62,16 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public String findId(String userName, String userEmail) {
         return repository.get(userName,userEmail);
+    }
+
+    @Override
+    public boolean checkDuplicate(String id) {
+        Optional<Member> result = repository.findById(id);
+        if (result.isPresent()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

@@ -1,13 +1,13 @@
 package com.example.demo.service;
 
-import java.util.List;
-
 import com.example.demo.member.dto.MemberDTO;
 import com.example.demo.member.service.MemberService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
+
+import java.util.List;
 
 
 
@@ -46,6 +46,16 @@ public class MemberServiceTest {
     public void 회원단건조회() {
         MemberDTO dto = service.read("user1");
         System.out.println(dto);
+    }
+
+    @Test
+    public void 중복체크(){
+        boolean yes = service.checkDuplicate("11");
+        boolean no = service.checkDuplicate("abc");
+
+
+        System.out.println(yes);
+        System.out.println(no);
     }
 
 }
