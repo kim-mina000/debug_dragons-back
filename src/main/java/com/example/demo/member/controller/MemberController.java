@@ -55,9 +55,14 @@ public class MemberController {
 //    }
 
 
-    @GetMapping("/findUserId")
+    @PostMapping("/findUserId")
     public String findUserId(@RequestParam String userName, @RequestParam String userEmail) {
         return service.findId(userName, userEmail);
+    }
+
+    @PostMapping("/findUserPw")
+    public String finduserPw(@RequestParam String userId, @RequestParam String userName, @RequestParam String userEmail){
+        return service.findPw(userId, userName, userEmail);
     }
 
     @PostMapping("/check-duplicate")

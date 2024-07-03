@@ -8,9 +8,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+import java.util.Random;
 
 //@Service
 public class MemberServiceImpl implements MemberService {
@@ -20,6 +24,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JavaMailSender mailSender;
 
     @Override
     public Page<MemberDTO> getList(int pageNumber) {
@@ -61,7 +68,43 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public String findId(String userName, String userEmail) {
-        return repository.get(userName,userEmail);
+        return repository.getId(userName,userEmail);
+    }
+
+    @Override
+    @Transactional
+    public String findPw(String userId, String userName, String userEmail) {
+        String existingPw = repository.getPw(userId,userName,userEmail);
+        if (existingPw == null){
+            new IllegalAccessException("일치하는 회원이 없습니다.");
+        }
+
+//        임시비번생성
+        String tempPw = generateTempPw();
+
+//        임시비번 저장
+        repository.updatePassword(userId,tempPw);
+
+        return "임시 비밀번호가 이메일로 발송되었습니다.";
+    }
+
+    private String generateTempPw(){
+        Random random = new Random();
+        int length = 10;    //비밀번호 길이
+        StringBuilder sb = new StringBuilder(length);
+        for (int i =0; i<length; i++){
+            char c = (char)(random.nextInt(26) + 'a');  //소문자 알파벳 랜덤생성
+            sb.append(c);
+        }
+        return  sb.toString();
+    }
+
+    private void sendEmailsend(String to, String tempPw){
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
+        message.setSubject("임시 비밀번호 발송");
+        message.setText("임시 비밀번호는 "+ tempPw + "입니다");
+        mailSender.send(message);
     }
 
     @Override
