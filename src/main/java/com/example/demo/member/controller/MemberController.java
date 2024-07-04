@@ -10,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-//@RestController     // @Controller + @responsebody
-@Controller
+import java.util.Map;
+
+@RestController     // @Controller + @responsebody
+//@Controller
 @RequestMapping("/member")
 public class MemberController {
 
@@ -56,14 +58,12 @@ public class MemberController {
 
 
     @PostMapping("/findUserId")
-    public String findUserId(@RequestParam String userName, @RequestParam String userEmail) {
-        return service.findId(userName, userEmail);
+    public String findUserId(@RequestBody Map<String, Object> requestBody) {
+        String userName = (String) requestBody.get("userName");
+        String userEmail = (String) requestBody.get("userEmail");
+        return service.findId(userName,userEmail);
     }
 
-    @PostMapping("/findUserPw")
-    public String finduserPw(@RequestParam String userId, @RequestParam String userName, @RequestParam String userEmail){
-        return service.findPw(userId, userName, userEmail);
-    }
 
     @PostMapping("/check-duplicate")
     public ResponseEntity<Boolean> checkIdDuplicate(@RequestBody String userIds){
@@ -73,7 +73,7 @@ public class MemberController {
         System.out.println(isDuplicate);
 
         return new ResponseEntity<>(isDuplicate, HttpStatus.OK);
-    };
+    }
 
 
 }

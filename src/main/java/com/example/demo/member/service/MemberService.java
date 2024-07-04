@@ -14,8 +14,6 @@ public interface MemberService {
 
     String findId(String userName, String userEmail);   //ID 찾기
 
-    String findPw(String userId, String userName, String userEmail);
-
     boolean checkDuplicate(String id);
 
 //    Entity -> DTO  몇버전 이후 부터 디폴트넣으면 일반 함수가능
