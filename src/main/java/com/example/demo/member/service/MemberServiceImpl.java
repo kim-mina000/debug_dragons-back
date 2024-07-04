@@ -8,9 +8,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
+import java.util.UUID;
 
 //@Service
 public class MemberServiceImpl implements MemberService {
@@ -20,6 +24,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JavaMailSender mailSender;
 
     @Override
     public Page<MemberDTO> getList(int pageNumber) {
@@ -61,7 +68,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public String findId(String userName, String userEmail) {
-        return repository.get(userName,userEmail);
+        return repository.getId(userName,userEmail);
     }
 
     @Override
