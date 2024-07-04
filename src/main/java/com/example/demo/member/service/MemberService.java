@@ -16,6 +16,8 @@ public interface MemberService {
 
     boolean checkDuplicate(String id);
 
+    Member updateMember(String id,Member newEntity);
+
 //    Entity -> DTO  몇버전 이후 부터 디폴트넣으면 일반 함수가능
     default MemberDTO entityToDto(Member entity){
         MemberDTO dto = MemberDTO.builder()

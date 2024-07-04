@@ -24,6 +24,7 @@ public class Member extends BaseEntity{
     @Column(length = 100, nullable = false)
     String userName;
 
+//    @Lob
     @Column(length = 1000)
     String userProfileImagePath;
 

@@ -73,7 +73,7 @@ public class SecurityConfig {
 		// "/member/register"으로 회원등록 POST요청옴
 		http
          .authorizeHttpRequests()
-         .requestMatchers("/member/*","/login").permitAll()
+         .requestMatchers("/member/**","/login").permitAll()
          .anyRequest().authenticated()
 
          .and()
