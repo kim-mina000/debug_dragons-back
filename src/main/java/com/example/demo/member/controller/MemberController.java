@@ -1,6 +1,8 @@
 package com.example.demo.member.controller;
 
+import com.example.demo.Util.FileUtil;
 import com.example.demo.member.dto.MemberDTO;
+import com.example.demo.member.entity.Member;
 import com.example.demo.member.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 //@RestController     // @Controller + @responsebody
 @Controller
@@ -17,6 +20,9 @@ public class MemberController {
 
     @Autowired
     private MemberService service;
+
+    @Autowired
+    FileUtil fileUtil;
 
     @GetMapping("/register")
     public String register(){
@@ -41,6 +47,10 @@ public class MemberController {
     }
 
 
+
+
+
+
     @GetMapping("/member/list")
     public void list(@RequestParam(name = "page", defaultValue = "0")int page, Model model){
         Page<MemberDTO> list = service.getList(page);
@@ -53,7 +63,22 @@ public class MemberController {
 //        model.addAttribute("dto", dto);
 //        model.addAttribute("page", page);
 //    }
+    @ResponseBody
+    @PostMapping("/upload")
+    public ResponseEntity<Void> handleFileUpload(@RequestParam("file") MultipartFile file,@RequestParam("userId") String userId) {
+        System.out.println(file);
+        System.out.println(userId);
 
+        MemberDTO memberDTO = service.read(userId);
+        System.out.println(memberDTO);
+        memberDTO.setUserProfileImagePath(fileUtil.fileUpload(file));
+
+        Member entity = service.dtoToEntity(memberDTO);
+
+        service.updateMember(userId, entity);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+
+    }
 
     @GetMapping("/findUserId")
     public String findUserId(@RequestParam String userName, @RequestParam String userEmail) {

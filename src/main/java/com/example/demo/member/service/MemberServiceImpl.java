@@ -74,6 +74,20 @@ public class MemberServiceImpl implements MemberService {
         }
     }
 
+    @Override
+    public Member updateMember(String id, Member newEntity) {
+        Member member = repository.findById(id).orElse(null);
+
+        if(member != null){
+            member.setUserEmail(newEntity.getUserEmail());
+            member.setUserName(newEntity.getUserName());
+            member.setUserProfileImagePath(newEntity.getUserProfileImagePath());
+//            member.setUserPw(newEntity.getUserPw()); 이건 나중에 패스워드도 수정할대 추가
+            return repository.save(member);
+        }
+        return null;
+    }
+
 }
 
 
