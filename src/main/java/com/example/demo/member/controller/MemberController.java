@@ -13,8 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-//@RestController     // @Controller + @responsebody
-@Controller
+import java.util.Map;
+
+@RestController     // @Controller + @responsebody
+//@Controller
 @RequestMapping("/member")
 public class MemberController {
 
@@ -80,10 +82,13 @@ public class MemberController {
 
     }
 
-    @GetMapping("/findUserId")
-    public String findUserId(@RequestParam String userName, @RequestParam String userEmail) {
-        return service.findId(userName, userEmail);
+    @PostMapping("/findUserId")
+    public String findUserId(@RequestBody Map<String, Object> requestBody) {
+        String userName = (String) requestBody.get("userName");
+        String userEmail = (String) requestBody.get("userEmail");
+        return service.findId(userName,userEmail);
     }
+
 
     @PostMapping("/check-duplicate")
     public ResponseEntity<Boolean> checkIdDuplicate(@RequestBody String userIds){
@@ -93,7 +98,7 @@ public class MemberController {
         System.out.println(isDuplicate);
 
         return new ResponseEntity<>(isDuplicate, HttpStatus.OK);
-    };
+    }
 
 
 }

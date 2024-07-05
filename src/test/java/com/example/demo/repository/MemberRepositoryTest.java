@@ -22,10 +22,11 @@ public class MemberRepositoryTest {
     @Test
     public void 회원등록(){
         Member member = Member.builder()
-                .userId("user2")
+                .userId("user1")
                 .userPw("1234")
-                .userName("김사용자")
+                .userName("김부각")
                 .userRole("ROLE_USER")
+                .userEmail("zzz@naver.com")
                 .build();
 
         repository.save(member);
@@ -65,8 +66,14 @@ public class MemberRepositoryTest {
 
     @Test
     public void 아이디찾기(){
-        String mm = repository.get("김아띠", "kimyslive7@naver.com");
-        System.out.println("찾는 Id: " + mm);
+        String idid = repository.getId("김아띠", "kimyslive7@naver.com");
+        System.out.println("찾는 Id: " + idid);
+    }
+
+    @Test
+    public void 비번찾기(){
+        String pwpw = repository.getPw("bbq5883", "김첨지","kimyslive7@naver.com");
+        System.out.println("찾는 비번: " + pwpw);
     }
 
 //    @Test
