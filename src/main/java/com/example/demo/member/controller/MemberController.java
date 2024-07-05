@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -75,9 +74,9 @@ public class MemberController {
         System.out.println(memberDTO);
         memberDTO.setUserProfileImagePath(fileUtil.fileUpload(file));
 
-        Member entity = service.dtoToEntity(memberDTO);
 
-        service.updateMember(userId, entity);
+
+        service.updateMember(userId, memberDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
 
     }
@@ -100,5 +99,9 @@ public class MemberController {
         return new ResponseEntity<>(isDuplicate, HttpStatus.OK);
     }
 
-
+    @PostMapping("/update")
+    public ResponseEntity<Boolean> updateUserInfo(@RequestBody MemberDTO dto){
+        Member member = service.updateMember(dto.getUserId(), dto);
+        return new ResponseEntity<>(true, HttpStatus.OK);
+    }
 }
