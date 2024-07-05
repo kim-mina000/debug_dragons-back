@@ -1,7 +1,6 @@
 package com.example.demo.Landmark.dto;
 
 import lombok.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 
@@ -39,5 +38,5 @@ public class LandmarkDTO {
 
     String landmarkImgPath;     //파일이름
 
-    MultipartFile uploadFile;   //파일스트림
+    // MultipartFile uploadFile;   //파일스트림
 }
