@@ -26,9 +26,9 @@ public class LandmarkServiceImpl implements LandmarkService {
         Landmark entity = dtoToEntity(dto); // 파라미터로 전달받은 dto를 엔티티로 변환
 
         // 유틸클래스를 이용해서 파일을 폴더에 저장하고 파일이름을 반환받는다
-        String imgPath = fileUtil.fileUpload(dto.getUploadFile());
-        // 그리고 엔티티에 파일이름을 저장한다
-        entity.setLandmarkImgPath(imgPath);
+//        String imgPath = fileUtil.fileUpload(dto.getUploadFile());
+//        // 그리고 엔티티에 파일이름을 저장한다
+//        entity.setLandmarkImgPath(imgPath);
 
         repository.save(entity); // 리파지토리로 게시물 등록
         int newNo = entity.getLandmarkNo();

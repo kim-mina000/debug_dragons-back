@@ -73,7 +73,9 @@ public class SecurityConfig {
 		// "/member/register"으로 회원등록 POST요청옴
 		http
          .authorizeHttpRequests()
-         .requestMatchers("/member/**","/login").permitAll()
+         .requestMatchers("/member/**","/login","/landmark/**").permitAll()
+//				.requestMatchers("/landmark/**").hasRole("USER")
+//				근데 쌤이거 hasRole("USER")만 해놓으면 시큐리티 서비스가 Role정보가 어딧는지 알고 어캐찾는거에요 이거 ..
          .anyRequest().authenticated()
 
          .and()
