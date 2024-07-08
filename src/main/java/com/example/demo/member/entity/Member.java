@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Getter
 @Setter
@@ -33,6 +35,12 @@ public class Member extends BaseEntity{
 
     @Column(length = 100)
     String userEmail;
+
+    @Column(length = 30)
+    String phone;
+
+    @Column(length = 30)
+    LocalDate birth;
 
 
 

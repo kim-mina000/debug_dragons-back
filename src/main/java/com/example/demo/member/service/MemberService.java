@@ -28,6 +28,8 @@ public interface MemberService {
                 .userProfileImagePath(entity.getUserProfileImagePath())
                 .userRole(entity.getUserRole())
                 .userEmail(entity.getUserEmail())
+                .phone(entity.getPhone())
+                .birth(entity.getBirth())
                 .build();
 
         return dto;
@@ -41,6 +43,8 @@ public interface MemberService {
                 .userProfileImagePath(dto.getUserProfileImagePath())
                 .userRole(dto.getUserRole())
                 .userEmail(dto.getUserEmail())
+                .birth(dto.getBirth())
+                .phone(dto.getPhone())
                 .build();
 
         return entity;

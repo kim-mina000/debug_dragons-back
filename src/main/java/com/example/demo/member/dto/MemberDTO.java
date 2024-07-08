@@ -2,6 +2,7 @@ package com.example.demo.member.dto;
 
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -26,5 +27,9 @@ public class MemberDTO {
     LocalDateTime regDate;
 
     String userEmail;
+
+    String phone;
+
+    LocalDate birth;
 
 }
