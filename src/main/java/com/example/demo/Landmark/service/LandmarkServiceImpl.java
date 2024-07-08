@@ -53,6 +53,22 @@ public class LandmarkServiceImpl implements LandmarkService {
     }
 
     @Override
+    public List<LandmarkDTO> getListById(String userId) {
+        Optional<Member> optionalMember = memberRepository.findById(userId);
+
+        if(optionalMember.isPresent()){
+            List<Landmark> result = repository.selectByWriter(optionalMember.get());
+            List<LandmarkDTO> resultDTO = result
+                    .stream()
+                    .map(entity -> entityToDto(entity))
+                    .collect(Collectors.toList());
+
+            return resultDTO;
+        }
+        return null;
+    }
+
+    @Override
     public LandmarkDTO read(int no) {
         Optional<Landmark> result = repository.findById(no);
 

@@ -1,8 +1,6 @@
 package com.example.demo.Landmark.controller;
 
 import com.example.demo.Landmark.dto.LandmarkDTO;
-import com.example.demo.Landmark.entity.Landmark;
-import com.example.demo.Landmark.repository.LandmarkRepository;
 import com.example.demo.Landmark.service.LandmarkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,8 +26,9 @@ public class LandmarkController {
     }
 
     @GetMapping("/read")
-    public ResponseEntity<List<LandmarkDTO>> getList(){
-        List<LandmarkDTO> list = landmarkService.getList();
+    public ResponseEntity<List<LandmarkDTO>> getList(@RequestParam(name="id")String userId){
+//        List<LandmarkDTO> list = landmarkService.getList();
+        List<LandmarkDTO> list = landmarkService.getListById(userId);
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 

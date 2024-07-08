@@ -14,6 +14,9 @@ public interface LandmarkService {
 //    랜드마크 목록 조회
     List<LandmarkDTO> getList();
 
+//    아이디로 랜드마크 목록 조회
+    List<LandmarkDTO> getListById(String userId);
+
 //    랜드마크 상세 조회
     LandmarkDTO read(int no);
 
