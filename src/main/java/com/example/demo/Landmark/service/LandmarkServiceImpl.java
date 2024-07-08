@@ -83,7 +83,8 @@ public class LandmarkServiceImpl implements LandmarkService {
             entity.setLongitude(dto.getLongitude());
             entity.setLatitude(dto.getLatitude());
             entity.setLandmarkImgPath(dto.getLandmarkImgPath());
-
+            entity.setLandmarkTime(dto.getLandmarkTime());
+            entity.setLandmarkDay(dto.getLandmarkDay());
 
             // 다시 저장
             repository.save(entity);

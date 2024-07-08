@@ -16,9 +16,9 @@ public class LandmarkDTO {
 
     int landmarkNo;
 
-    int day;   //일차
+    int landmarkDay;   //일차
 
-    LocalTime time; //시간
+    LocalTime landmarkTime; //시간
 
     String writer;
 
