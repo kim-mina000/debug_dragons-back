@@ -5,7 +5,6 @@ import com.example.demo.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -24,11 +23,11 @@ public class Landmark  extends BaseEntity {
 
 //  몇일 차 일정인지
     @Column
-    int day;
+    int landmarkDay;
 
 //  시간
     @Column
-    LocalTime time;
+    LocalTime landmarkTime;
 
 //  유저 아이디 (외래키)
     @ManyToOne
