@@ -35,25 +35,7 @@ public class LandmarkController {
 
     @PostMapping("/modifyLandmark")
     public ResponseEntity<Void> modifyLandmark(@RequestBody ArrayList<LandmarkDTO> list) {
-//        System.out.println(list);
-//        ArrayList<Landmark> landmarks = new ArrayList<>();
-//        for (LandmarkDTO dto : list) {
-//            System.out.println(dto);
-//            Landmark landmark = new Landmark();
-//           landmark.setLandmarkNo(dto.getLandmarkNo());
-//           if (dto.getLandmarkDay() != 0){
-//               landmark.setLandmarkDay(dto.getLandmarkDay());
-//           }
-//           if (dto.getLandmarkTime() != null){
-//               landmark.setLandmarkTime(dto.getLandmarkTime());
-//           }
-//           landmarks.add(landmark);
-//        }
-//        landmarkRepository.saveAll(landmarks);
-//        return ResponseEntity.ok().build();
-
         for (LandmarkDTO dto : list){
-            System.out.println("받아온값" + dto);
             LandmarkDTO baseDTO = landmarkService.read(dto.getLandmarkNo());
 
             baseDTO.setLandmarkDay(dto.getLandmarkDay());
