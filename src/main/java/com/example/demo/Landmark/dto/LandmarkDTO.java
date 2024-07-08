@@ -3,6 +3,8 @@ package com.example.demo.Landmark.dto;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 
 @Getter
 @Setter
@@ -14,9 +16,11 @@ public class LandmarkDTO {
 
     int landmarkNo;
 
-    String writer;
+    int day;   //일차
 
-    boolean landmarkOrigin;
+    LocalTime time; //시간
+
+    String writer;
 
     String landmarkName;
 
@@ -35,6 +39,8 @@ public class LandmarkDTO {
     LocalDateTime regDate;
 
     LocalDateTime modDate;
+
+    boolean landmarkOrigin;
 
     String landmarkImgPath;     //파일이름
 

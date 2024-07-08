@@ -20,9 +20,9 @@ public class MemberServiceTest {
     @Test
     public void 회원등록() {
         MemberDTO dto = MemberDTO.builder()
-                .userId("bbq5883")
+                .userId("green")
                 .userPw("1234")
-                .userName("김첨지")
+                .userName("박춘봉")
                 .userRole("ROLE_USER")
                 .userEmail("kimyslive7@naver.com")
                 .build();

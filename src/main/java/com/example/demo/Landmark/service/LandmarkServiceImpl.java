@@ -4,6 +4,8 @@ import com.example.demo.Landmark.dto.LandmarkDTO;
 import com.example.demo.Landmark.entity.Landmark;
 import com.example.demo.Landmark.repository.LandmarkRepository;
 import com.example.demo.Util.FileUtil;
+import com.example.demo.member.entity.Member;
+import com.example.demo.member.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,9 @@ import java.util.stream.Collectors;
 public class LandmarkServiceImpl implements LandmarkService {
     @Autowired
     LandmarkRepository repository;  // 사용할 리파지토리를 멤버로 선언
+
+    @Autowired
+    MemberRepository memberRepository;
 
     @Autowired
     private FileUtil fileUtil;
@@ -96,6 +101,13 @@ public class LandmarkServiceImpl implements LandmarkService {
         } else {
             return 0; // 실패
         }
+    }
+
+    @Override
+    public void saveLandmarkWithWriter(Landmark landmark, Member writer) {
+        writer = memberRepository.save(writer); // Member 엔티티 먼저 저장
+        landmark.setWriter(writer); // Landmark 엔티티에 연관 엔티티 설정
+        repository.save(landmark); // Landmark 엔티티 저장
     }
 
 }

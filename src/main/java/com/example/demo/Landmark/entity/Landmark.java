@@ -5,6 +5,9 @@ import com.example.demo.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 @Entity
 @Getter
 @Setter
@@ -19,13 +22,18 @@ public class Landmark  extends BaseEntity {
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     int landmarkNo;
 
+//  몇일 차 일정인지
+    @Column
+    int day;
+
+//  시간
+    @Column
+    LocalTime time;
+
 //  유저 아이디 (외래키)
     @ManyToOne
     Member writer;
 
-//  여행지 정보 출저 (유저가 쓴글인지 받아온 데이터인지)
-    @Column(length = 11,nullable = false)
-    boolean landmarkOrigin;
 
 //  여행지 이름
     @Column(length = 30,nullable = false)
@@ -59,5 +67,8 @@ public class Landmark  extends BaseEntity {
     @Column(length = 1000)
     private String landmarkImgPath;
 
+//  여행지 정보 출저 (유저가 쓴글인지 받아온 데이터인지)
+    @Column(length = 11,nullable = false)
+    boolean landmarkOrigin;
 
 }

@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/landmark")
 public class LandmarkController {
@@ -20,5 +22,11 @@ public class LandmarkController {
         int no =landmarkService.register(dto);
         System.out.println(no);
         return new ResponseEntity<>(no, HttpStatus.OK);
+    }
+
+    @GetMapping("/read")
+    public ResponseEntity<List<LandmarkDTO>> getList(){
+        List<LandmarkDTO> list = landmarkService.getList();
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 }

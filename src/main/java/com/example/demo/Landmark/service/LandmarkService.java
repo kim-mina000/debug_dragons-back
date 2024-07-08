@@ -23,11 +23,16 @@ public interface LandmarkService {
 //    랜드마크 삭제
     int remove(int no);
 
+//    글쓴이(writer) 랜드마크에 저장
+void saveLandmarkWithWriter(Landmark landmark, Member writer);
+
     default Landmark dtoToEntity(LandmarkDTO dto){
         Member member = Member.builder().userId(dto.getWriter()).build();
 
         Landmark entity = Landmark.builder()
                 .landmarkNo(dto.getLandmarkNo())
+                .day(dto.getDay())
+                .time(dto.getTime())
                 .writer(member)
                 .landmarkOrigin(dto.isLandmarkOrigin())
                 .landmarkName(dto.getLandmarkName())
@@ -48,6 +53,8 @@ public interface LandmarkService {
 
          LandmarkDTO dto = LandmarkDTO.builder()
                 .landmarkNo(entity.getLandmarkNo())
+                .day(entity.getDay())
+                .time(entity.getTime())
                 .writer(entity.getWriter().getUserId())
                 .landmarkOrigin(entity.isLandmarkOrigin())
                 .landmarkName(entity.getLandmarkName())
