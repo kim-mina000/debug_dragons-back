@@ -60,4 +60,10 @@ public class LandMarkServiceTest {
         service.register(landmark);
     }
 
+    @Test
+    public void 아이디로리스트찾아줘(){
+        List<LandmarkDTO> list = service.getListById("11");
+        System.out.println(list);
+    }
+
 }

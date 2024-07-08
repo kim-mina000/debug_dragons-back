@@ -31,14 +31,18 @@ public class MemberController {
     }
 
 //  회원가입
+    @ResponseBody
     @PostMapping("/register")
     public ResponseEntity<Boolean> registerPost(@RequestBody MemberDTO dto
+//                                                @RequestBody MemberDTO dto,
+//                                                @RequestPart("file") MultipartFile file
 //                                                RedirectAttributes redirectAttributes
     ) {
         System.out.println(dto);
 
         boolean isSuccess = service.register(dto);
 
+//        boolean isSuccess = false;
         if(isSuccess) {
             return new ResponseEntity<>(isSuccess, HttpStatus.CREATED);
         }else {
@@ -73,8 +77,6 @@ public class MemberController {
         MemberDTO memberDTO = service.read(userId);
         System.out.println(memberDTO);
         memberDTO.setUserProfileImagePath(fileUtil.fileUpload(file));
-
-
 
         service.updateMember(userId, memberDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
