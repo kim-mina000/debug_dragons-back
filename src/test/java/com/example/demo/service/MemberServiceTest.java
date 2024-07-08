@@ -24,7 +24,7 @@ public class MemberServiceTest {
                 .userPw("1234")
                 .userName("박춘봉")
                 .userRole("ROLE_USER")
-                .userEmail("kimyslive7@naver.com")
+                .userEmail("kkk@naver.com")
                 .build();
         boolean isSuccess = service.register(dto);
         if(isSuccess) {

@@ -19,15 +19,15 @@ public class LandMarkServiceTest {
     public void 서비스(){
         LandmarkDTO dto = LandmarkDTO.builder()
                 .landmarkNo(0)
-                .writer("bbq5883")
+                .writer("zzz")
                 .landmarkDay(2)
-                .landmarkTime(LocalTime.of(20,30))
-                .landmarkAddress("서울")
-                .landmarkName("숭례문")
+                .landmarkTime(LocalTime.of(12,30))
+                .landmarkAddress("인천")
+                .landmarkName("월미도")
                 .landmarkOrigin(true)
-                .landmarkShortDesc("국보1호 태우지마")
-                .landmarkDesc("국보1호입니다 서울 한복판에 있어요")
-                .longitude("123")
+                .landmarkShortDesc("회먹고산책하고")
+                .landmarkDesc("중구월미도에요")
+                .longitude("543")
                 .latitude("123")
                 .build();
 
