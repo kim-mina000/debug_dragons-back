@@ -16,7 +16,7 @@ public class LandmarkCommentDTO {
 
     int landmarkNo;
 
-    String userId;
+    String writer;
 
     String landmarkCommentContent;
 
