@@ -34,6 +34,11 @@ public class Member extends BaseEntity{
     @Column(length = 100)
     String userEmail;
 
+    @Column(length = 30)
+    String nickName;
+
+
+
 
 
 }
