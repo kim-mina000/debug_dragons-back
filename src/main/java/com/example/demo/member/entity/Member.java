@@ -37,16 +37,13 @@ public class Member extends BaseEntity{
     String userEmail;
 
     @Column(length = 30)
-<<<<<<< HEAD
     String nickName;
 
-
-=======
+    @column(length = 20)
     String phone;
 
     @Column(length = 30)
     LocalDate birth;
->>>>>>> 0c3cbcc00d4f279559c7a5d008151e61719c7121
 
 
 
