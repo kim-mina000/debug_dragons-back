@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,14 +31,18 @@ public class MemberController {
     }
 
 //  회원가입
+    @ResponseBody
     @PostMapping("/register")
     public ResponseEntity<Boolean> registerPost(@RequestBody MemberDTO dto
+//                                                @RequestBody MemberDTO dto,
+//                                                @RequestPart("file") MultipartFile file
 //                                                RedirectAttributes redirectAttributes
     ) {
         System.out.println(dto);
 
         boolean isSuccess = service.register(dto);
 
+//        boolean isSuccess = false;
         if(isSuccess) {
             return new ResponseEntity<>(isSuccess, HttpStatus.CREATED);
         }else {
@@ -75,9 +78,7 @@ public class MemberController {
         System.out.println(memberDTO);
         memberDTO.setUserProfileImagePath(fileUtil.fileUpload(file));
 
-        Member entity = service.dtoToEntity(memberDTO);
-
-        service.updateMember(userId, entity);
+        service.updateMember(userId, memberDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
 
     }
@@ -100,5 +101,9 @@ public class MemberController {
         return new ResponseEntity<>(isDuplicate, HttpStatus.OK);
     }
 
-
+    @PostMapping("/update")
+    public ResponseEntity<Boolean> updateUserInfo(@RequestBody MemberDTO dto){
+        Member member = service.updateMember(dto.getUserId(), dto);
+        return new ResponseEntity<>(true, HttpStatus.OK);
+    }
 }

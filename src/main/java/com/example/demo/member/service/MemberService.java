@@ -16,7 +16,7 @@ public interface MemberService {
 
     boolean checkDuplicate(String id);
 
-    Member updateMember(String id,Member newEntity);
+    Member updateMember(String id,MemberDTO newDTO);
 
 //    Entity -> DTO  몇버전 이후 부터 디폴트넣으면 일반 함수가능
     default MemberDTO entityToDto(Member entity){
@@ -28,7 +28,12 @@ public interface MemberService {
                 .userProfileImagePath(entity.getUserProfileImagePath())
                 .userRole(entity.getUserRole())
                 .userEmail(entity.getUserEmail())
+<<<<<<< HEAD
                 .nickname(entity.getNickName())
+=======
+                .phone(entity.getPhone())
+                .birth(entity.getBirth())
+>>>>>>> 0c3cbcc00d4f279559c7a5d008151e61719c7121
                 .build();
 
         return dto;
@@ -42,7 +47,12 @@ public interface MemberService {
                 .userProfileImagePath(dto.getUserProfileImagePath())
                 .userRole(dto.getUserRole())
                 .userEmail(dto.getUserEmail())
+<<<<<<< HEAD
                 .nickName(dto.getNickname())
+=======
+                .birth(dto.getBirth())
+                .phone(dto.getPhone())
+>>>>>>> 0c3cbcc00d4f279559c7a5d008151e61719c7121
                 .build();
 
         return entity;

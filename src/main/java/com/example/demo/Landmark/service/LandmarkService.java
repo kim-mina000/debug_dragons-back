@@ -14,6 +14,9 @@ public interface LandmarkService {
 //    랜드마크 목록 조회
     List<LandmarkDTO> getList();
 
+//    아이디로 랜드마크 목록 조회
+    List<LandmarkDTO> getListById(String userId);
+
 //    랜드마크 상세 조회
     LandmarkDTO read(int no);
 
@@ -31,8 +34,8 @@ void saveLandmarkWithWriter(Landmark landmark, Member writer);
 
         Landmark entity = Landmark.builder()
                 .landmarkNo(dto.getLandmarkNo())
-                .day(dto.getDay())
-                .time(dto.getTime())
+                .landmarkDay(dto.getLandmarkDay())
+                .landmarkTime(dto.getLandmarkTime())
                 .writer(member)
                 .landmarkOrigin(dto.isLandmarkOrigin())
                 .landmarkName(dto.getLandmarkName())
@@ -53,8 +56,8 @@ void saveLandmarkWithWriter(Landmark landmark, Member writer);
 
          LandmarkDTO dto = LandmarkDTO.builder()
                 .landmarkNo(entity.getLandmarkNo())
-                .day(entity.getDay())
-                .time(entity.getTime())
+                .landmarkDay(entity.getLandmarkDay())
+                .landmarkTime(entity.getLandmarkTime())
                 .writer(entity.getWriter().getUserId())
                 .landmarkOrigin(entity.isLandmarkOrigin())
                 .landmarkName(entity.getLandmarkName())

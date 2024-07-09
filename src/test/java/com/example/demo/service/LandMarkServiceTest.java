@@ -19,15 +19,15 @@ public class LandMarkServiceTest {
     public void 서비스(){
         LandmarkDTO dto = LandmarkDTO.builder()
                 .landmarkNo(0)
-                .writer("bbq5883")
-                .day(2)
-                .time(LocalTime.of(20,30))
-                .landmarkAddress("서울")
-                .landmarkName("숭례문")
+                .writer("zzz")
+                .landmarkDay(2)
+                .landmarkTime(LocalTime.of(12,30))
+                .landmarkAddress("인천")
+                .landmarkName("월미도")
                 .landmarkOrigin(true)
-                .landmarkShortDesc("국보1호")
-                .landmarkDesc("우리나라 국보1호 태우지마")
-                .longitude("123")
+                .landmarkShortDesc("회먹고산책하고")
+                .landmarkDesc("중구월미도에요")
+                .longitude("543")
                 .latitude("123")
                 .build();
 
@@ -42,4 +42,28 @@ public class LandMarkServiceTest {
         List list = service.getList();
         System.out.println(list);
     }
+
+    @Test
+    public void 수정해죠(){
+        LandmarkDTO landmark = LandmarkDTO.builder()
+                .landmarkNo(1)
+                .landmarkDay(9 )
+                .landmarkTime(LocalTime.of(9,10,10))
+                .writer("11")
+                .landmarkAddress("시리네집")
+                .landmarkName("호엥")
+                .longitude("123456")
+                .latitude("1231455")
+                .landmarkOrigin(true)
+                .build();
+
+        service.register(landmark);
+    }
+
+    @Test
+    public void 아이디로리스트찾아줘(){
+        List<LandmarkDTO> list = service.getListById("11");
+        System.out.println(list);
+    }
+
 }
