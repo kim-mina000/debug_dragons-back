@@ -33,5 +33,5 @@ public class MemberDTO {
     String phone;
 
     LocalDate birth;
-    
+
 }

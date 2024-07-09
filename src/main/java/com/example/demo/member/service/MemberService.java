@@ -28,12 +28,9 @@ public interface MemberService {
                 .userProfileImagePath(entity.getUserProfileImagePath())
                 .userRole(entity.getUserRole())
                 .userEmail(entity.getUserEmail())
-<<<<<<< HEAD
                 .nickname(entity.getNickName())
-=======
                 .phone(entity.getPhone())
                 .birth(entity.getBirth())
->>>>>>> 0c3cbcc00d4f279559c7a5d008151e61719c7121
                 .build();
 
         return dto;
