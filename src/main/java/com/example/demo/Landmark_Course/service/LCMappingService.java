@@ -7,13 +7,19 @@ import com.example.demo.course.entity.CourseLandmark;
 
 public interface LCMappingService {
 
+
+    // 등록
+    public int register(LCMappingDTO dto);
+
     default LCMappingDTO entityToDto (LCMapping entity){
 
         LCMappingDTO dto = LCMappingDTO.builder()
                 .landmarkNo(entity.getLandmarkNo().getLandmarkNo())
                 .courseNo(entity.getCourseNo().getCourseNo())
-                .order(entity.getOrderNumber())
+                .orderNumber(entity.getOrderNumber())
                 .isSave(entity.isSave())
+                .LCMappingNo(entity.getLCMappingNo())
+                .category(entity.getCategory())
                 .build();
 
         return dto;
@@ -22,13 +28,19 @@ public interface LCMappingService {
 
     default LCMapping dtoToEntity (LCMappingDTO dto){
 
-        Landmark landmark = Landmark.builder().landmarkNo(dto.getLandmarkNo()).build();
+        Landmark landmark = Landmark.builder()
+                .landmarkNo(dto.getLandmarkNo())
+                .build();
+
         CourseLandmark courseLandmark = CourseLandmark.builder().courseNo(dto.getCourseNo()).build();
+
 
         LCMapping entity = LCMapping.builder()
                 .landmarkNo(landmark)
                 .courseNo(courseLandmark)
-                .orderNumber(dto.getOrder())
+                .orderNumber(dto.getOrderNumber())
+                .LCMappingNo(dto.getLCMappingNo())
+                .category(dto.getCategory())
                 .isSave(dto.isSave())
                 .build();
 

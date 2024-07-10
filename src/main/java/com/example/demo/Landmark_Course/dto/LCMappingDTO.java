@@ -10,12 +10,16 @@ import lombok.*;
 @Builder
 public class LCMappingDTO {
 
+    int LCMappingNo;
+
     int landmarkNo;
 
-    int courseNo;
+    String courseNo;
 
-    int order;
+    int orderNumber;
 
     boolean isSave;
+
+    String category;
 
 }
