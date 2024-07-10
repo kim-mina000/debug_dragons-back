@@ -45,4 +45,10 @@ public class LandmarkController {
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @DeleteMapping("/modifyLandmark")
+    public ResponseEntity<Void> modifyLandmark(@RequestParam(name = "id") int landmarkNo) {
+        landmarkService.remove(landmarkNo);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

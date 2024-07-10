@@ -14,5 +14,5 @@ public class CourseLikeDTO {
 
     String userId;
 
-    int courseNo;
+    String courseNo;
 }

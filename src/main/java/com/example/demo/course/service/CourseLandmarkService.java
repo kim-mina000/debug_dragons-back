@@ -6,6 +6,9 @@ import com.example.demo.member.entity.Member;
 
 public interface CourseLandmarkService {
 
+    // 등록
+    public void register(CourseLandmarkDTO dto);
+
     default CourseLandmark dtoToEntity(CourseLandmarkDTO dto){
 
         Member member = Member.builder().userId(dto.getUserId()).build();
