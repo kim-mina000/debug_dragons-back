@@ -56,6 +56,10 @@ dependencies {
 
 //	이메일 보내기 위한 의존성 추가
 //	implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+	// 테스트
+	annotationProcessor 'org.projectlombok:lombok'
+
 }
 
 tasks.named('test') {

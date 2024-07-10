@@ -2,7 +2,9 @@ package com.example.demo.member.service;
 
 import com.example.demo.member.dto.MemberDTO;
 import com.example.demo.member.entity.Member;
+import lombok.Getter;
 import org.springframework.data.domain.Page;
+
 
 public interface MemberService {
 

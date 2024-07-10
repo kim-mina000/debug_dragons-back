@@ -84,6 +84,10 @@ public class MemberServiceImpl implements MemberService {
         if(member != null){
             member.setUserEmail(newDTO.getUserEmail());
             member.setUserName(newDTO.getUserName());
+            member.setUserId(newDTO.getUserId());
+            member.setBirth(newDTO.getBirth());
+            member.setPhone(newDTO.getPhone());
+            member.setNickName(newDTO.getNickname());
             member.setUserProfileImagePath(newDTO.getUserProfileImagePath());
 //            member.setUserPw(newEntity.getUserPw()); 이건 나중에 패스워드도 수정할대 추가
             return repository.save(member);
