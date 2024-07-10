@@ -31,7 +31,7 @@ public class LandMarkServiceTest {
                 .latitude("123")
                 .build();
 
-        int no = service.register(dto);
+        LandmarkDTO no = service.register(dto);
 
         System.out.println("새로 입력된 게시물 넘버" + no);
 
@@ -69,6 +69,11 @@ public class LandMarkServiceTest {
     @Test
     public void 삭제테스트(){
         service.remove(5);
+    }
+
+    @Test
+    public void 주소로접근(){
+        LandmarkDTO result = service.readBylandmarkAddress("");
     }
 
 }

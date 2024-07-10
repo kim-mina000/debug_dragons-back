@@ -9,7 +9,7 @@ import java.util.List;
 public interface LandmarkService {
 
 //    랜드마크 등록
-    int register(LandmarkDTO dto);
+    LandmarkDTO register(LandmarkDTO dto);
 
 //    랜드마크 목록 조회
     List<LandmarkDTO> getList();
@@ -27,7 +27,13 @@ public interface LandmarkService {
     int remove(int no);
 
 //    글쓴이(writer) 랜드마크에 저장
-void saveLandmarkWithWriter(Landmark landmark, Member writer);
+    void saveLandmarkWithWriter(Landmark landmark, Member writer);
+
+//    LCMapping에 저장 landmarkOrigin을 토글
+    void changeLandmarkOrigin(int landmarkNo);
+
+//    landmarkAdress로 landmarkEntity접근
+    LandmarkDTO readBylandmarkAddress(String adress);
 
     default Landmark dtoToEntity(LandmarkDTO dto){
         Member member = Member.builder().userId(dto.getWriter()).build();

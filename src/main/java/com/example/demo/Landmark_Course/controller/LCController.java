@@ -1,5 +1,6 @@
 package com.example.demo.Landmark_Course.controller;
 
+import com.example.demo.Landmark.service.LandmarkService;
 import com.example.demo.Landmark_Course.dto.LCMappingDTO;
 import com.example.demo.Landmark_Course.service.LCMappingService;
 import com.example.demo.course.dto.CourseLandmarkDTO;
@@ -19,10 +20,14 @@ public class LCController {
     @Autowired
     CourseLandmarkService courseLandmarkService;
 
+    @Autowired
+    LandmarkService landmarkService;
+
     @PostMapping("/register")
     public ResponseEntity<Integer> register(@RequestBody LCMappingDTO dto,
                                             @RequestParam(name = "id")String id
                                             ){
+
 
         CourseLandmarkDTO courseLandmark = CourseLandmarkDTO.builder()
                 .courseNo(dto.getCourseNo())
@@ -30,6 +35,7 @@ public class LCController {
                 .build();
 
         courseLandmarkService.register(courseLandmark);
+        landmarkService.changeLandmarkOrigin(dto.getLandmarkNo());
 
         int no = service.register(dto);
 
