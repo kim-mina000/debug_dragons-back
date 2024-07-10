@@ -4,10 +4,15 @@ import com.example.demo.course.dto.CourseLandmarkDTO;
 import com.example.demo.course.entity.CourseLandmark;
 import com.example.demo.member.entity.Member;
 
+import java.util.List;
+
 public interface CourseLandmarkService {
 
     // 등록
     public void register(CourseLandmarkDTO dto);
+
+    // 아이디로 검색 리스트 반환
+    public List<CourseLandmarkDTO> readByUserId(String userId);
 
     default CourseLandmark dtoToEntity(CourseLandmarkDTO dto){
 

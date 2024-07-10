@@ -19,10 +19,9 @@ public class LandmarkController {
 
     @ResponseBody
     @PostMapping("/register")
-    public ResponseEntity<Integer> registerMyCourse(@RequestBody LandmarkDTO dto){
-        int no =landmarkService.register(dto);
-        System.out.println(no);
-        return new ResponseEntity<>(no, HttpStatus.OK);
+    public ResponseEntity<LandmarkDTO> registerMyCourse(@RequestBody LandmarkDTO dto){
+        LandmarkDTO landmarkDTO = landmarkService.register(dto);
+        return new ResponseEntity<>(landmarkDTO, HttpStatus.OK);
     }
 
     @GetMapping("/read")

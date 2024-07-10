@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface LandmarkRepository extends JpaRepository<Landmark,Integer> {
 
@@ -14,5 +15,8 @@ public interface LandmarkRepository extends JpaRepository<Landmark,Integer> {
 //    SELECT l FROM Landmark l WHERE l.writerUserId = :userId
     @Query("select L from Landmark L where L.writer = :userId")
     public List<Landmark> selectByWriter(@Param("userId") Member member);
+
+    @Query("select L from Landmark L where L.landmarkAddress = :adress")
+    public Optional<Landmark> selectByAddress(@Param("adress") String landmarkAddress);
 
 }

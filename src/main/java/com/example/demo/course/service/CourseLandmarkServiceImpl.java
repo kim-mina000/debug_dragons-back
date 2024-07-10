@@ -6,6 +6,9 @@ import com.example.demo.course.repository.CourseLandmarkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class CourseLandmarkServiceImpl implements CourseLandmarkService {
 
@@ -17,5 +20,16 @@ public class CourseLandmarkServiceImpl implements CourseLandmarkService {
         CourseLandmark entity = dtoToEntity(dto);
 
         repository.save(entity);
+    }
+
+    @Override
+    public List<CourseLandmarkDTO> readByUserId(String userId) {
+
+        List<CourseLandmark> result = repository.readByUserId(userId);
+        List<CourseLandmarkDTO> courseLandmarkDTO = result.stream()
+                .map(entity -> entityToDto(entity))
+                .collect(Collectors.toList());
+
+        return courseLandmarkDTO;
     }
 }
