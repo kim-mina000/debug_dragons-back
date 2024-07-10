@@ -22,11 +22,10 @@ public class MemberRepositoryTest {
     @Test
     public void 회원등록(){
         Member member = Member.builder()
-                .userId("user1")
+                .userId("사용자")
                 .userPw("1234")
-                .userName("김부각")
+                .userName("사용자")
                 .userRole("ROLE_USER")
-                .userEmail("zzz@naver.com")
                 .build();
 
         repository.save(member);

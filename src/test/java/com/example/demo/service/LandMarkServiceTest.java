@@ -66,4 +66,9 @@ public class LandMarkServiceTest {
         System.out.println(list);
     }
 
+    @Test
+    public void 삭제테스트(){
+        service.remove(5);
+    }
+
 }
