@@ -4,6 +4,7 @@ import com.example.demo.Util.FileUtil;
 import com.example.demo.member.dto.MemberDTO;
 import com.example.demo.member.entity.Member;
 import com.example.demo.member.service.MemberService;
+import com.example.demo.member.service.MemberTagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
