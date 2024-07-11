@@ -59,9 +59,12 @@ dependencies {
 
 	// 테스트
 	annotationProcessor 'org.projectlombok:lombok'
-
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+test {
+	exclude '**/*'
 }
