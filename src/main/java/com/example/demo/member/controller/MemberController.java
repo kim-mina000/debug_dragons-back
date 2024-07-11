@@ -51,10 +51,7 @@ public class MemberController {
         }
     }
 
-
-
-
-
+    
 
     @GetMapping("/member/list")
     public void list(@RequestParam(name = "page", defaultValue = "0")int page, Model model){
