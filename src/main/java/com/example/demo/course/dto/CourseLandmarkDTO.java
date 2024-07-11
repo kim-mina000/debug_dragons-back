@@ -12,9 +12,11 @@ import java.time.LocalDateTime;
 @Builder
 public class CourseLandmarkDTO {
 
-    int courseNo;
+    String courseNo;
 
     String userId;
 
     LocalDateTime courseRegDate;
+
+    String category;
 }

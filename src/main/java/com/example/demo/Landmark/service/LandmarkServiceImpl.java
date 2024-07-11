@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 @Service    // 서비스 클래스로 지정
 public class LandmarkServiceImpl implements LandmarkService {
+
     @Autowired
     LandmarkRepository repository;  // 사용할 리파지토리를 멤버로 선언
 
@@ -27,7 +28,7 @@ public class LandmarkServiceImpl implements LandmarkService {
 
     //  상속받은 메소드 구현(랜드마크등록~삭제)
     @Override
-    public int register(LandmarkDTO dto) {
+    public LandmarkDTO register(LandmarkDTO dto) {
         Landmark entity = dtoToEntity(dto); // 파라미터로 전달받은 dto를 엔티티로 변환
 
         // 유틸클래스를 이용해서 파일을 폴더에 저장하고 파일이름을 반환받는다
@@ -37,8 +38,9 @@ public class LandmarkServiceImpl implements LandmarkService {
 
         repository.save(entity); // 리파지토리로 게시물 등록
         int newNo = entity.getLandmarkNo();
+        LandmarkDTO landmarkDTO = entityToDto(repository.findById(newNo).get());
 
-        return newNo; // 새로운 게시물의 번호 반환
+        return landmarkDTO; // 새로운 게시물의 번호 반환
     }
 
     @Override
@@ -125,6 +127,37 @@ public class LandmarkServiceImpl implements LandmarkService {
         writer = memberRepository.save(writer); // Member 엔티티 먼저 저장
         landmark.setWriter(writer); // Landmark 엔티티에 연관 엔티티 설정
         repository.save(landmark); // Landmark 엔티티 저장
+    }
+
+    @Override
+    public void changeLandmarkOrigin(int landmarkNo) {
+        Optional<Landmark> result = repository.findById(landmarkNo);
+
+        if(result.isPresent()){
+            result.get().setLandmarkOrigin(true);
+        }
+    }
+
+    @Override
+    public LandmarkDTO readBylandmarkAddress(String adress) {
+        Optional<Landmark> result = repository.selectByAddress(adress);
+
+        if(result.isPresent()){
+            result.get().setLandmarkOrigin(true);
+            return entityToDto(result.get());
+        }
+        return null;
+    }
+
+    @Override
+    public LandmarkDTO findById(int landmarkNo) {
+        Optional<Landmark> result = repository.findById(landmarkNo);
+
+        if(result.isPresent()){
+            return entityToDto(result.get());
+        }
+        return null;
+
     }
 
 }

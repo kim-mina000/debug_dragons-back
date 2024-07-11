@@ -66,14 +66,21 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
 		// 1.인증 필터 등록: /member 또는 /board 요청이 들어오면 사용자 인증 실행
-		String[] arr = {"/landmarkComment/*"};
+
+		String[] arr = {"/landmarkComment/**","/course/**"};
+
 		http.addFilterBefore(new ApiCheckFilter(arr, jwtUtil(), customUserDetailsService()), UsernamePasswordAuthenticationFilter.class);
 
 		// 2.권한 설정: 회원등록-아무나, 게시물-user, 회원-admin
 		// "/member/register"으로 회원등록 POST요청옴
 		http
          .authorizeHttpRequests()
-         .requestMatchers("/member/**","/login","/landmark/**","/landmarkComment/**","/membertag/**").permitAll()
+
+
+         .requestMatchers("/member/**","/login","/landmark/**","/lc/**","landmarkComment/**","/course/**").permitAll()
+
+
+
 //				.requestMatchers("/landmark/**").hasRole("USER")
 //				근데 쌤이거 hasRole("USER")만 해놓으면 시큐리티 서비스가 Role정보가 어딧는지 알고 어캐찾는거에요 이거 ..
          .anyRequest().authenticated()

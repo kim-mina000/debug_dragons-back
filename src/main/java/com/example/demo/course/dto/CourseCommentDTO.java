@@ -14,7 +14,7 @@ public class CourseCommentDTO {
 
     int courseCommentNo;
 
-    int courseNo;
+    String courseNo;
 
     String userId;
 

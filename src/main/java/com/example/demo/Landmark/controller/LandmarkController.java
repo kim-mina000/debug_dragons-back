@@ -19,10 +19,9 @@ public class LandmarkController {
 
     @ResponseBody
     @PostMapping("/register")
-    public ResponseEntity<Integer> registerMyCourse(@RequestBody LandmarkDTO dto){
-        int no =landmarkService.register(dto);
-        System.out.println(no);
-        return new ResponseEntity<>(no, HttpStatus.OK);
+    public ResponseEntity<LandmarkDTO> registerMyCourse(@RequestBody LandmarkDTO dto){
+        LandmarkDTO landmarkDTO = landmarkService.register(dto);
+        return new ResponseEntity<>(landmarkDTO, HttpStatus.OK);
     }
 
     @GetMapping("/read")
@@ -44,5 +43,20 @@ public class LandmarkController {
             landmarkService.modify(baseDTO);
         }
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/modifyLandmark")
+    public ResponseEntity<Void> modifyLandmark(@RequestParam(name = "id") int landmarkNo) {
+        landmarkService.remove(landmarkNo);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    // 랜드마크No(PK값)으로 랜드마크 찾기
+    @GetMapping("/readPK")
+    public ResponseEntity<LandmarkDTO> readPK(@RequestParam(name = "landmarkNo") int landmarkNo){
+
+        LandmarkDTO dto = landmarkService.findById(landmarkNo);
+
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 }

@@ -40,4 +40,10 @@ public class LandMarkRepositoryTest {
         landmark.setLandmarkTime(LocalTime.of(18,18));
         repository.save(landmark);
     }
+
+    @Test
+    public void 주소로랜드마크찾기(){
+        Landmark landmark = repository.selectByAddress("대전 유성구 안산동 산 28-2").get();
+        System.out.println(landmark);
+    }
 }
