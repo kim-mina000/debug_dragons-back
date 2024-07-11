@@ -50,4 +50,13 @@ public class LandmarkController {
         landmarkService.remove(landmarkNo);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    
+    // 랜드마크No(PK값)으로 랜드마크 찾기
+    @GetMapping("/readPK")
+    public ResponseEntity<LandmarkDTO> readPK(@RequestParam(name = "landmarkNo") int landmarkNo){
+
+        LandmarkDTO dto = landmarkService.findById(landmarkNo);
+
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
 }

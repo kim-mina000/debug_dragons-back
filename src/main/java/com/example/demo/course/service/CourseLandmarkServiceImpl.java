@@ -32,4 +32,11 @@ public class CourseLandmarkServiceImpl implements CourseLandmarkService {
 
         return courseLandmarkDTO;
     }
+
+    @Override
+    public CourseLandmarkDTO findById(String courseNo) {
+        CourseLandmark entity = repository.findById(courseNo).get();
+        CourseLandmarkDTO dto = entityToDto(entity);
+        return dto;
+    }
 }

@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/lc")
 public class LCController {
@@ -41,4 +43,13 @@ public class LCController {
 
         return new ResponseEntity<>(no, HttpStatus.OK);
     }
+
+    @GetMapping("/read")
+    public ResponseEntity<List> getLcData(@RequestParam(name = "courseNo")String courseNo){
+        CourseLandmarkDTO courseLandmarkDTO = courseLandmarkService.findById(courseNo);
+        List<LCMappingDTO> list = service.read(courseLandmarkDTO);
+
+        return new ResponseEntity<>(list,HttpStatus.OK);
+    }
+
 }

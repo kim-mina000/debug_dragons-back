@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface CourseLandmarkRepository extends JpaRepository<CourseLandmark, Integer> {
+public interface CourseLandmarkRepository extends JpaRepository<CourseLandmark, String> {
 
 
 //    @Query(value = "SELECT * FROM COURSE_LANDMARK CL WHERE CL.WRITER_USER_ID = :userId", nativeQuery = false)

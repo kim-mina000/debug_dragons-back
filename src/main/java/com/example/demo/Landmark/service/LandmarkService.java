@@ -35,6 +35,9 @@ public interface LandmarkService {
 //    landmarkAdress로 landmarkEntity접근
     LandmarkDTO readBylandmarkAddress(String adress);
 
+//    PK로 landmarkDTO반환
+    LandmarkDTO findById(int landmarkNo);
+
     default Landmark dtoToEntity(LandmarkDTO dto){
         Member member = Member.builder().userId(dto.getWriter()).build();
 
