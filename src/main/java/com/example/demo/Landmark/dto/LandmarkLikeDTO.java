@@ -15,4 +15,6 @@ public class LandmarkLikeDTO {
     int landmarkNo;
 
     String userId;
+
+    boolean isLike;
 }
