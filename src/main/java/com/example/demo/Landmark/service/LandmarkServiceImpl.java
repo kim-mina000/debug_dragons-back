@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 @Service    // 서비스 클래스로 지정
 public class LandmarkServiceImpl implements LandmarkService {
+
     @Autowired
     LandmarkRepository repository;  // 사용할 리파지토리를 멤버로 선언
 
@@ -146,6 +147,17 @@ public class LandmarkServiceImpl implements LandmarkService {
             return entityToDto(result.get());
         }
         return null;
+    }
+
+    @Override
+    public LandmarkDTO findById(int landmarkNo) {
+        Optional<Landmark> result = repository.findById(landmarkNo);
+
+        if(result.isPresent()){
+            return entityToDto(result.get());
+        }
+        return null;
+
     }
 
 }

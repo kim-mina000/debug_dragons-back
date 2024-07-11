@@ -14,6 +14,9 @@ public interface CourseLandmarkService {
     // 아이디로 검색 리스트 반환
     public List<CourseLandmarkDTO> readByUserId(String userId);
 
+    // PK로 찾기
+    public CourseLandmarkDTO findById(String courseNo);
+
     default CourseLandmark dtoToEntity(CourseLandmarkDTO dto){
 
         Member member = Member.builder().userId(dto.getUserId()).build();
