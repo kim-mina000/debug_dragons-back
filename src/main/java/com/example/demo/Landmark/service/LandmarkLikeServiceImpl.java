@@ -26,7 +26,6 @@ public class LandmarkLikeServiceImpl implements LandmarkLikeService {
             landmarkLikeRepository.save(existingLike);
         }else{
 //            좋아요 없으면
-            System.out.println("isLike true");
             LandmarkLike addLike = LandmarkLike.builder()
                     .landmarkNo(landmark)
                     .userId(userId)

@@ -14,9 +14,9 @@ public class LandmarkLikeServiceTest {
     LandmarkLikeService service;
 
     @Test
-    public void 라이크증가(){
+    public void 좋아요true_취소false(){
         Landmark landmark = Landmark.builder().landmarkNo(1).build();
-        Member member = Member.builder().userId("bbq5883").build();
+        Member member = Member.builder().userId("green").build();
         service.toggleLike(landmark,member);
 
     }
