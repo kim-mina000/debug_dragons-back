@@ -4,7 +4,6 @@ import com.example.demo.Util.FileUtil;
 import com.example.demo.member.dto.MemberDTO;
 import com.example.demo.member.entity.Member;
 import com.example.demo.member.service.MemberService;
-import com.example.demo.member.service.MemberTagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -69,14 +68,14 @@ public class MemberController {
     @ResponseBody
     @PostMapping("/upload")
     public ResponseEntity<Void> handleFileUpload(@RequestParam("file") MultipartFile file,@RequestParam("userId") String userId) {
-        System.out.println(file);
-        System.out.println(userId);
 
         MemberDTO memberDTO = service.read(userId);
-        System.out.println(memberDTO);
-        memberDTO.setUserProfileImagePath(fileUtil.fileUpload(file));
+
+        String url = fileUtil.fileUpload(file);
+        memberDTO.setUserProfileImagePath(url);
 
         service.updateMember(userId, memberDTO);
+
         return new ResponseEntity<>(HttpStatus.CREATED);
 
     }

@@ -20,11 +20,11 @@ public class MemberServiceTest {
     @Test
     public void 회원등록() {
         MemberDTO dto = MemberDTO.builder()
-                .userId("green")
+                .userId("bbq5883")
                 .userPw("1234")
-                .userName("박춘봉")
+                .userName("김참치")
                 .userRole("ROLE_USER")
-                .userEmail("kkk@naver.com")
+                .userEmail("kkkkkk@naver.com")
                 .build();
         boolean isSuccess = service.register(dto);
         if(isSuccess) {
