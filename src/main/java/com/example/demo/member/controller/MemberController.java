@@ -67,7 +67,7 @@ public class MemberController {
 //    }
     @ResponseBody
     @PostMapping("/upload")
-    public ResponseEntity<Void> handleFileUpload(@RequestParam("file") MultipartFile file,@RequestParam("userId") String userId) {
+    public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file,@RequestParam("userId") String userId) {
 
         MemberDTO memberDTO = service.read(userId);
 
@@ -76,7 +76,7 @@ public class MemberController {
 
         service.updateMember(userId, memberDTO);
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(url, HttpStatus.CREATED);
 
     }
 
