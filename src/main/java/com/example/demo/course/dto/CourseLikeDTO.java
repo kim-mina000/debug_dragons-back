@@ -15,4 +15,6 @@ public class CourseLikeDTO {
     String userId;
 
     String courseNo;
+
+    boolean isLike;
 }
