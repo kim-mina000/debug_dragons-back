@@ -1,10 +1,7 @@
 package com.example.demo.Landmark.entity;
 
 import com.example.demo.member.entity.Member;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -19,6 +16,7 @@ public class LandmarkLike {
 
     //  여행지 idx
     @Id
+    @GeneratedValue(strategy =GenerationType.IDENTITY)
     int landmarkLikeNo;
 
     //  여행지 고유값 (외래키)

@@ -19,11 +19,14 @@ public class LandmarkLikeServiceImpl implements LandmarkLikeService {
     @Override
     public void toggleLike(Landmark landmark, Member userId) {
         Optional<LandmarkLike> toggleLike = landmarkLikeRepository.findByLandmarkNoAndUserId(landmark, userId);
-//        좋아요 있다면?
+//      ↓ 2)좋아요가 존재한다면,        ↑ 1)특정랜드마크게시판, 사용자에 대해 좋아요 있는지 확인후
         if (toggleLike.isPresent()){
-            landmarkLikeRepository.delete(toggleLike.get());
+            LandmarkLike existingLike = toggleLike.get();
+            existingLike.setLike(!existingLike.isLike());
+            landmarkLikeRepository.save(existingLike);
         }else{
 //            좋아요 없으면
+            System.out.println("isLike true");
             LandmarkLike addLike = LandmarkLike.builder()
                     .landmarkNo(landmark)
                     .userId(userId)

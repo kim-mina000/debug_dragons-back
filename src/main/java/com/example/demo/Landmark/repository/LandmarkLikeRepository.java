@@ -4,6 +4,8 @@ import com.example.demo.Landmark.entity.Landmark;
 import com.example.demo.Landmark.entity.LandmarkLike;
 import com.example.demo.member.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,4 +16,8 @@ public interface LandmarkLikeRepository extends JpaRepository<LandmarkLike,Integ
 
 //  사용자가 좋아요한 모든 랜드마크 정보를 찾기
     List<LandmarkLike> findByUserId(Member member);
+
+//    랜드마크 isLike가 true인 좋아요 갯수세기
+    @Query(value = "select count(*) from landmark_like where landmark_no= :landmark_no AND is_like = true", nativeQuery = true)
+    int countIsLikeTrue(@Param("landmark_no")int landmarkNo);
 }

@@ -67,7 +67,7 @@ public class SecurityConfig {
 
 		// 1.인증 필터 등록: /member 또는 /board 요청이 들어오면 사용자 인증 실행
 
-		String[] arr = {"/landmarkComment/**", "/course/**"};
+		String[] arr = {"/landmarkComment/**", "/course/**", "/landmarkLike/**"};
 
 		http.addFilterBefore(new ApiCheckFilter(arr, jwtUtil(), customUserDetailsService()), UsernamePasswordAuthenticationFilter.class);
 
@@ -77,7 +77,7 @@ public class SecurityConfig {
          .authorizeHttpRequests()
 
 
-         .requestMatchers("/member/**","/login","/landmark/**","/lc/**","landmarkComment/**","/course/**", "/landmarkLike/**").permitAll()
+         .requestMatchers("/member/**","/login","/landmark/**","/lc/**","landmarkComment/**","/course/**").permitAll()
 
 
 

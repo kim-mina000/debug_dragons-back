@@ -59,4 +59,5 @@ public class LandmarkController {
 
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
+
 }
