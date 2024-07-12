@@ -59,6 +59,9 @@ dependencies {
 
 	// 테스트
 	annotationProcessor 'org.projectlombok:lombok'
+
+	//S3연결
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-aws', version: '2.2.6.RELEASE'
 }
 
 tasks.named('test') {
