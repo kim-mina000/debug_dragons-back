@@ -14,6 +14,8 @@ public interface CourseLikeService {
 
     List<CourseLike> getAllLikesByUser(Member userId);
 
+    int likeCount(int course);
+
     default CourseLike dtoToEntity(CourseLikeDTO dto){
 
         CourseLandmark couresLandmark = CourseLandmark.builder().courseNo(dto.getCourseNo()).build();

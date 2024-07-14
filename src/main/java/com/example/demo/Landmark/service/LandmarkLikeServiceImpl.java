@@ -40,4 +40,11 @@ public class LandmarkLikeServiceImpl implements LandmarkLikeService {
     public List<LandmarkLike> getAllLikesByUser(Member userId) {
         return landmarkLikeRepository.findByUserId(userId);
     }
+
+    @Override
+    public int likeCount(int landmark) {
+        return landmarkLikeRepository.countIsLikeTrue(landmark);
+    }
+
+
 }

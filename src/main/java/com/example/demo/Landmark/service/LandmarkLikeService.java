@@ -14,6 +14,9 @@ public interface LandmarkLikeService {
 
     List<LandmarkLike> getAllLikesByUser(Member userId);
 
+    int likeCount(int landmark);
+
+
     default LandmarkLikeDTO entityToDto (LandmarkLike entity){
 
         Member member = entity.getUserId();
