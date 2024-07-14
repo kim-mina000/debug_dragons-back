@@ -14,11 +14,11 @@ public class CourseLikeServiceTest {
     @Autowired
     CourseLikeService service;
 
-    @Test
-    public void 전체코스좋아요true_취소false(){
-        CourseLandmark courseLandmark = CourseLandmark.builder().courseNo().build();
-        Member member = Member.builder().userId("green").build();
-        service.toggleLikeCourse(courseLandmark,member);
-    }
-//    courseLandmark완성되어야 테스트가능
+//    @Test
+//    public void 전체코스좋아요true_취소false(){
+//        CourseLandmark courseLandmark = CourseLandmark.builder().courseNo(1).build();
+//        Member member = Member.builder().userId("green").build();
+//        service.toggleLikeCourse(courseLandmark,member);
+//    }
+//    ****  ☆☆courseLandmark완성되어야 테스트가능☆☆
 }

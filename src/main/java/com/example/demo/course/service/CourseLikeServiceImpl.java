@@ -41,5 +41,10 @@ public class CourseLikeServiceImpl implements CourseLikeService {
         return courseLikeRepository.findByUserId(userId);
     }
 
+    @Override
+    public int likeCount(int course) {
+        return courseLikeRepository.countIsLikeTrue(course);
+    }
+
 
 }

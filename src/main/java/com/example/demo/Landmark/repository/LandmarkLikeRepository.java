@@ -18,7 +18,7 @@ public interface LandmarkLikeRepository extends JpaRepository<LandmarkLike,Integ
 //  사용자가 좋아요 한 모든 랜드마크 정보를 찾기
     List<LandmarkLike> findByUserId(Member member);
 
-//    랜드마크 isLike가 true인 좋아요 갯수세기
-    @Query(value = "select count(*) from landmark_like where landmark_no= :landmark_no AND is_like = true", nativeQuery = true)
+//    랜드마크 isLike가 true인 좋아요 갯수세기 ☆ landmark_no_landmark_no 실제외래키존재확인(네이티브 쿼리문 일 경우)
+    @Query(value = "select count(*) from landmark_like where landmark_no_landmark_no= :landmark_no AND is_like = true", nativeQuery = true)
     int countIsLikeTrue(@Param("landmark_no")int landmarkNo);
 }
