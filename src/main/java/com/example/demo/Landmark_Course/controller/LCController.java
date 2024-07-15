@@ -52,4 +52,10 @@ public class LCController {
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
 
+    @GetMapping("/readById")
+    public ResponseEntity<List> getLcDataById(@RequestParam(name = "id")String userId){
+        List<CourseLandmarkDTO> list = courseLandmarkService.readByUserId(userId);
+        return new ResponseEntity<>(list,HttpStatus.OK);
+    }
+
 }
