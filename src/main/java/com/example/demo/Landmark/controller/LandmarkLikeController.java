@@ -47,7 +47,7 @@ public class LandmarkLikeController {
 
     // 특정 랜드마크의 좋아요 수 조회
     // @PathVariable는 landmarkNo를 URL 경로에서 변수 값을 추출하여  파라미터로 받아와서 사용할수 있다
-    @GetMapping("/{landmarkNo}/likes")
+    @GetMapping("/likes/{landmarkNo}")
     public ResponseEntity<Integer> getLikesCount(@PathVariable int landmarkNo) {
         int likeCount = landmarkLikeService.likeCount(landmarkNo);
         return ResponseEntity.ok(likeCount);
