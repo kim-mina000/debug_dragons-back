@@ -5,7 +5,19 @@ import com.example.demo.course.entity.CourseComment;
 import com.example.demo.course.entity.CourseLandmark;
 import com.example.demo.member.entity.Member;
 
+import java.util.List;
+
 public interface CourseCommentService {
+
+//    코스 게시물 기준 댓글목록 조회메소드
+    List<CourseCommentDTO> getListByComment(String courseNo);
+
+//    새로운 댓글등록
+    int register(CourseCommentDTO dto);
+
+//    댓글삭제
+    boolean remove(int courseLandmarkNo);
+
 
     default CourseComment dtoToEntity(CourseCommentDTO dto){
 
