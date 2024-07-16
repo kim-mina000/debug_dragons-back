@@ -1,5 +1,6 @@
 package com.example.demo.Landmark_Course.controller;
 
+import com.example.demo.Landmark.dto.LandmarkDTO;
 import com.example.demo.Landmark.service.LandmarkService;
 import com.example.demo.Landmark_Course.dto.LCMappingDTO;
 import com.example.demo.Landmark_Course.service.LCMappingService;
@@ -51,5 +52,14 @@ public class LCController {
 
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
+
+//    내가 저장한랜드마크 공유(origin변경)  앞단에 연결하고 공유시킨애들 숫자 2로변경시켜
+    @PostMapping("/share/{landmarkNo}")
+    public ResponseEntity<String> shareLandmark(@PathVariable int landmarkNo){
+        landmarkService.changeLandmarkOrigin(landmarkNo);
+        return ResponseEntity.ok("랜드마크 공유하기");
+    }
+
+
 
 }
