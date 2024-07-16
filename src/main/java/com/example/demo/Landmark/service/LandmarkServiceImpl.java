@@ -134,7 +134,7 @@ public class LandmarkServiceImpl implements LandmarkService {
         Optional<Landmark> result = repository.findById(landmarkNo);
 
         if(result.isPresent()){
-            result.get().setLandmarkOrigin(true);
+            result.get().setLandmarkOrigin(1);
         }
     }
 
@@ -143,7 +143,7 @@ public class LandmarkServiceImpl implements LandmarkService {
         Optional<Landmark> result = repository.selectByAddress(adress);
 
         if(result.isPresent()){
-            result.get().setLandmarkOrigin(true);
+            result.get().setLandmarkOrigin(1);
             return entityToDto(result.get());
         }
         return null;

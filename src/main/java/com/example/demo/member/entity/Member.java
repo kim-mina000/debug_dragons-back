@@ -45,6 +45,4 @@ public class Member extends BaseEntity{
     @Column(length = 30)
     LocalDate birth;
 
-
-
 }
