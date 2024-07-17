@@ -24,7 +24,7 @@ public class LandMarkServiceTest {
                 .landmarkTime(LocalTime.of(12,30))
                 .landmarkAddress("인천")
                 .landmarkName("월미도")
-                .landmarkOrigin(true)
+                .landmarkOrigin(1)
                 .landmarkShortDesc("회먹고산책하고")
                 .landmarkDesc("중구월미도에요")
                 .longitude("543")
@@ -54,7 +54,7 @@ public class LandMarkServiceTest {
                 .landmarkName("호엥")
                 .longitude("123456")
                 .latitude("1231455")
-                .landmarkOrigin(true)
+                .landmarkOrigin(1)
                 .build();
 
         service.register(landmark);
