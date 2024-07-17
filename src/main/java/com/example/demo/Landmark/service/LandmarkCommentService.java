@@ -15,7 +15,7 @@ public interface LandmarkCommentService {
 //    새로운댓글등록
     int register(LandmarkCommentDTO dto);
 
-//    특정게게시물삭제
+//    댓글삭제
     boolean remove(int no);
 
     default LandmarkComment dtoToEntity(LandmarkCommentDTO dto){

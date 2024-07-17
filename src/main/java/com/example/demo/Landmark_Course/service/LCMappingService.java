@@ -18,6 +18,10 @@ public interface LCMappingService {
     // courseNo으로 데이터 가져오기
     public List<LCMappingDTO> read(CourseLandmarkDTO courseNo);
 
+    // 공유하면 landmark_origin값 2로 바꿔주기
+    void changeLandmarkOriginShare(int landmarkNo);
+
+
     default LCMappingDTO entityToDto (LCMapping entity){
 
         LCMappingDTO dto = LCMappingDTO.builder()

@@ -33,7 +33,6 @@ public class Landmark  extends BaseEntity {
     @ManyToOne
     Member writer;
 
-
 //  여행지 이름
     @Column(length = 30,nullable = false)
     String landmarkName;
@@ -66,8 +65,8 @@ public class Landmark  extends BaseEntity {
     @Column(length = 1000)
     private String landmarkImgPath;
 
-//  여행지 정보 출저 (유저가 쓴글인지 받아온 데이터인지)
+//  랜드마크출처 0=초기값, 1= 내가 저장하면 2=내가 공유하면
     @Column(length = 11,nullable = false)
-    boolean landmarkOrigin;
+    int landmarkOrigin;
 
 }

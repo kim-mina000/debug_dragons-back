@@ -19,7 +19,7 @@ public class LandMarkServiceTest {
     public void 서비스(){
         LandmarkDTO dto = LandmarkDTO.builder()
                 .landmarkNo(0)
-                .writer("green")
+                .writer("bbq5883")
                 .landmarkDay(2)
                 .landmarkTime(LocalTime.of(12,30))
                 .landmarkAddress("인천")

@@ -20,19 +20,17 @@ public class LandmarkLikeController {
     @Autowired
     LandmarkLikeService landmarkLikeService;
 
-    @Autowired
-    LandmarkLikeRepository landmarkLikeRepository;
-
     @PostMapping("/isLike")
     public ResponseEntity<String> toggleLike(@RequestBody LandmarkLikeDTO dto,
                                              Principal principal){
-        String id =  principal.getName();   //인증된 ID가져오고
+//        String id =  principal.getName();   //인증된 ID가져오고
 
         Landmark landmark = new Landmark();
         landmark.setLandmarkNo(dto.getLandmarkNo());
 
         Member user = new Member();
-        user.setUserId(dto.getUserId());
+//        user.setUserId(dto.getUserId());
+        user.setUserId((principal.getName()));
 
         landmarkLikeService.toggleLike(landmark,user);
         return ResponseEntity.ok("islike");
@@ -46,10 +44,12 @@ public class LandmarkLikeController {
         List<LandmarkLike> likes = landmarkLikeService.getAllLikesByUser(user);
         return ResponseEntity.ok(likes);
     }
-    // 특정 랜드마크의 좋아요 수 조회 *** @PathVariable는 landmarkNo를 파라미터로 받아와서 사용할수 있어
-    @GetMapping("/{landmarkNo}/likes")
+
+    // 특정 랜드마크의 좋아요 수 조회
+    // @PathVariable는 landmarkNo를 URL 경로에서 변수 값을 추출하여  파라미터로 받아와서 사용할수 있다
+    @GetMapping("/likes/{landmarkNo}")
     public ResponseEntity<Integer> getLikesCount(@PathVariable int landmarkNo) {
-        int likeCount = landmarkLikeRepository.countIsLikeTrue(landmarkNo);
+        int likeCount = landmarkLikeService.likeCount(landmarkNo);
         return ResponseEntity.ok(likeCount);
     }
 }

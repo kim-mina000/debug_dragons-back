@@ -60,4 +60,27 @@ public class LandmarkController {
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
+// landmarkOrigin=2 인 값 가져오기
+    @GetMapping("/lookaround")
+    public ResponseEntity<List> readByOrigin2 (){
+        List<LandmarkDTO> list = landmarkService.getListByOrigin(2);
+
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+//    changeLandmarkOrigin은 LcController에서 쓰고있어요 register 부분
+    @ResponseBody
+    @GetMapping("/changeOrigin")
+    public ResponseEntity<Void> changeOriginTo2(@RequestBody ArrayList<LandmarkDTO> list){
+        System.out.println(list);
+
+        for(LandmarkDTO dto : list){
+            System.out.println(dto);
+            System.out.println(dto.getLandmarkNo());
+            landmarkService.changeLandmarkOrigin2(dto.getLandmarkNo());
+        }
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

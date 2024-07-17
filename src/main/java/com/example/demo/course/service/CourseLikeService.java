@@ -1,11 +1,20 @@
 package com.example.demo.course.service;
 
+import com.example.demo.Landmark.entity.LandmarkLike;
 import com.example.demo.course.dto.CourseLikeDTO;
 import com.example.demo.course.entity.CourseLandmark;
 import com.example.demo.course.entity.CourseLike;
 import com.example.demo.member.entity.Member;
 
+import java.util.List;
+
 public interface CourseLikeService {
+
+    void toggleLikeCourse(CourseLandmark courseLandmark, Member member);
+
+    List<CourseLike> getAllLikesByUser(Member userId);
+
+    int likeCount(int course);
 
     default CourseLike dtoToEntity(CourseLikeDTO dto){
 
@@ -17,6 +26,7 @@ public interface CourseLikeService {
                 .courseLikeNo(dto.getCourseLikeNo())
                 .courseNo(couresLandmark)
                 .userId(member)
+                .isLike(dto.isLike())
                 .build();
 
         return entity;
@@ -27,6 +37,7 @@ public interface CourseLikeService {
                 .courseLikeNo(entity.getCourseLikeNo())
                 .courseNo(entity.getCourseNo().getCourseNo())
                 .userId(entity.getUserId().getUserId())
+                .isLike(entity.isLike())
                 .build();
 
         return dto;

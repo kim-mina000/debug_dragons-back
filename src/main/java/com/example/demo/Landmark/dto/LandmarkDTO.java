@@ -40,7 +40,7 @@ public class LandmarkDTO {
 
     LocalDateTime modDate;
 
-    boolean landmarkOrigin;
+    int landmarkOrigin;
 
     String landmarkImgPath;     //파일이름
 

@@ -134,7 +134,19 @@ public class LandmarkServiceImpl implements LandmarkService {
         Optional<Landmark> result = repository.findById(landmarkNo);
 
         if(result.isPresent()){
-            result.get().setLandmarkOrigin(true);
+            result.get().setLandmarkOrigin(1);
+        }
+    }
+
+    @Override
+    public void changeLandmarkOrigin2(int landmarkNo) {
+        Optional<Landmark> result = repository.findById(landmarkNo);
+
+        if(result.isPresent()){
+            Landmark entity = result.get();
+            entity.setLandmarkOrigin(2);
+            repository.save(entity);
+
         }
     }
 
@@ -143,7 +155,7 @@ public class LandmarkServiceImpl implements LandmarkService {
         Optional<Landmark> result = repository.selectByAddress(adress);
 
         if(result.isPresent()){
-            result.get().setLandmarkOrigin(true);
+            result.get().setLandmarkOrigin(1);
             return entityToDto(result.get());
         }
         return null;
@@ -158,6 +170,16 @@ public class LandmarkServiceImpl implements LandmarkService {
         }
         return null;
 
+    }
+
+    @Override
+    public List<LandmarkDTO> getListByOrigin(int origin) {
+        List<LandmarkDTO> list = repository.findAll().stream()
+                .map(entity -> entityToDto(entity))
+                .filter(dto -> dto.getLandmarkOrigin() == origin)
+                .collect(Collectors.toList());
+
+        return list;
     }
 
 }
