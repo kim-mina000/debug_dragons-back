@@ -70,7 +70,7 @@ public class LandmarkController {
 
 //    changeLandmarkOrigin은 LcController에서 쓰고있어요 register 부분
     @ResponseBody
-    @GetMapping("/changeOrigin")
+    @PostMapping("/changeOrigin")
     public ResponseEntity<Void> changeOriginTo2(@RequestBody ArrayList<LandmarkDTO> list){
         System.out.println(list);
 
