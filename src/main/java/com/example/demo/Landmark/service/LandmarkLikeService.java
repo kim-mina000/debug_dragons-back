@@ -16,6 +16,7 @@ public interface LandmarkLikeService {
 
     int likeCount(int landmark);
 
+    LandmarkLike getUserLikeStatus(Member userId, boolean isLike);
 
     default LandmarkLikeDTO entityToDto (LandmarkLike entity){
 

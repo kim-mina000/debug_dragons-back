@@ -21,4 +21,7 @@ public interface LandmarkLikeRepository extends JpaRepository<LandmarkLike,Integ
 //    랜드마크 isLike가 true인 좋아요 갯수세기 ☆ landmark_no_landmark_no 실제외래키존재확인(네이티브 쿼리문 일 경우)
     @Query(value = "select count(*) from landmark_like where landmark_no_landmark_no= :landmark_no AND is_like = true", nativeQuery = true)
     int countIsLikeTrue(@Param("landmark_no")int landmarkNo);
+
+//    사용자좋아요 여부(하트땜시)
+    LandmarkLike findByUserIdAndIsLike(Member userId, boolean isLike);
 }

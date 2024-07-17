@@ -7,6 +7,7 @@ import com.example.demo.Landmark.repository.LandmarkLikeRepository;
 import com.example.demo.Landmark.service.LandmarkLikeService;
 import com.example.demo.member.entity.Member;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class LandmarkLikeController {
 
     @PostMapping("/isLike")
     public ResponseEntity<String> toggleLike(@RequestBody LandmarkLikeDTO dto,
-                                             Principal principal){
+                                             Principal principal) {
 //        String id =  principal.getName();   //인증된 ID가져오고
 
         Landmark landmark = new Landmark();
@@ -32,7 +33,7 @@ public class LandmarkLikeController {
 //        user.setUserId(dto.getUserId());
         user.setUserId((principal.getName()));
 
-        landmarkLikeService.toggleLike(landmark,user);
+        landmarkLikeService.toggleLike(landmark, user);
         return ResponseEntity.ok("islike");
     }
 
@@ -51,5 +52,19 @@ public class LandmarkLikeController {
     public ResponseEntity<Integer> getLikesCount(@PathVariable int landmarkNo) {
         int likeCount = landmarkLikeService.likeCount(landmarkNo);
         return ResponseEntity.ok(likeCount);
+    }
+
+    @GetMapping("userLikeStatus")
+    public ResponseEntity<LandmarkLike> getUserLikeStatus(@RequestParam("userId") String userId,
+                                                          @RequestParam("isLike") boolean isLike) {
+        Member member = new Member();
+        member.setUserId(userId);
+
+        LandmarkLike landmarkLike = landmarkLikeService.getUserLikeStatus(member, isLike);
+        // landmarkLike이 null인 경우 클라이언트에게 404 에러를 반환;
+        if (landmarkLike == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(landmarkLike, HttpStatus.OK);
     }
 }

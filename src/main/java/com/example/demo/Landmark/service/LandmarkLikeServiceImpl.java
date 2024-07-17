@@ -46,5 +46,9 @@ public class LandmarkLikeServiceImpl implements LandmarkLikeService {
         return landmarkLikeRepository.countIsLikeTrue(landmark);
     }
 
+    @Override
+    public LandmarkLike getUserLikeStatus(Member userId, boolean isLike) {
+        return landmarkLikeRepository.findByUserIdAndIsLike(userId, isLike);
+    }
 
 }
