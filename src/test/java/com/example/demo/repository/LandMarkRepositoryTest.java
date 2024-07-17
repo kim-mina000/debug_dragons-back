@@ -21,7 +21,7 @@ public class LandMarkRepositoryTest {
         Landmark landmark = Landmark.builder()
                 .landmarkAddress("냐냐냥")
                 .landmarkName("냥뇽녕")
-                .landmarkOrigin(true)
+                .landmarkOrigin(1)
                 .latitude("123")
                 .longitude("123")
                 .landmarkDay(10)
