@@ -35,4 +35,25 @@ public class BookmarkController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
+    @GetMapping("/toggle")
+    public ResponseEntity<Void> toggle(@RequestParam(name = "id") String id,
+                                       @RequestParam(name = "no") int no ){
+        List<BookmarkDTO> list = service.read(id);
+        boolean hasValue = false;
+
+        for (BookmarkDTO dto : list){
+            if(dto.getBookmarkNo() == no){
+                service.remove(no);
+                hasValue = true;
+            }
+        }
+
+        if (hasValue){
+            BookmarkDTO dto = BookmarkDTO.builder().bookmarkNo(0).landmark(no).member(id).build();
+            service.register(dto);
+        }
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }
