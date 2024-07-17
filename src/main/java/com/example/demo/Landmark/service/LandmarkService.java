@@ -29,14 +29,20 @@ public interface LandmarkService {
 //    글쓴이(writer) 랜드마크에 저장
     void saveLandmarkWithWriter(Landmark landmark, Member writer);
 
-//    LCMapping에 저장 landmarkOrigin을 토글
+//    LCMapping에 저장 landmarkOrigin을 1로변경
     void changeLandmarkOrigin(int landmarkNo);
+
+//    landmarkOrigin을 2로변경
+    void changeLandmarkOrigin2(int landmarkNo);
 
 //    landmarkAdress로 landmarkEntity접근
     LandmarkDTO readBylandmarkAddress(String adress);
 
 //    PK로 landmarkDTO반환
     LandmarkDTO findById(int landmarkNo);
+
+//    int landmarkOrigin 값으로 랜드마크 리스트 조회
+    List<LandmarkDTO> getListByOrigin(int origin);
 
     default Landmark dtoToEntity(LandmarkDTO dto){
         Member member = Member.builder().userId(dto.getWriter()).build();

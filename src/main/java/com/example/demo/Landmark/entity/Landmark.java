@@ -33,7 +33,6 @@ public class Landmark  extends BaseEntity {
     @ManyToOne
     Member writer;
 
-
 //  여행지 이름
     @Column(length = 30,nullable = false)
     String landmarkName;

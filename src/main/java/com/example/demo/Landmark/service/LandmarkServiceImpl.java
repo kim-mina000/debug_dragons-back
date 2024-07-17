@@ -139,6 +139,18 @@ public class LandmarkServiceImpl implements LandmarkService {
     }
 
     @Override
+    public void changeLandmarkOrigin2(int landmarkNo) {
+        Optional<Landmark> result = repository.findById(landmarkNo);
+
+        if(result.isPresent()){
+            Landmark entity = result.get();
+            entity.setLandmarkOrigin(2);
+            repository.save(entity);
+
+        }
+    }
+
+    @Override
     public LandmarkDTO readBylandmarkAddress(String adress) {
         Optional<Landmark> result = repository.selectByAddress(adress);
 
@@ -158,6 +170,16 @@ public class LandmarkServiceImpl implements LandmarkService {
         }
         return null;
 
+    }
+
+    @Override
+    public List<LandmarkDTO> getListByOrigin(int origin) {
+        List<LandmarkDTO> list = repository.findAll().stream()
+                .map(entity -> entityToDto(entity))
+                .filter(dto -> dto.getLandmarkOrigin() == origin)
+                .collect(Collectors.toList());
+
+        return list;
     }
 
 }
