@@ -16,4 +16,6 @@ public interface BookmarkRepository extends JpaRepository<Bookmark, Integer> {
     @Query("SELECT B FROM Bookmark B WHERE B.landmark = :no")
     List<Bookmark> findAllById(@Param("no") int no);
 
+    
+    // 선생님저를차가운사회에 버리지말아주세요 ,,이거 유기에요
 }
