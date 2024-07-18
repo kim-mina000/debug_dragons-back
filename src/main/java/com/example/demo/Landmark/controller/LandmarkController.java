@@ -72,11 +72,8 @@ public class LandmarkController {
     @ResponseBody
     @PostMapping("/changeOrigin")
     public ResponseEntity<Void> changeOriginTo2(@RequestBody ArrayList<LandmarkDTO> list){
-        System.out.println(list);
 
         for(LandmarkDTO dto : list){
-            System.out.println(dto);
-            System.out.println(dto.getLandmarkNo());
             landmarkService.changeLandmarkOrigin2(dto.getLandmarkNo());
         }
 
