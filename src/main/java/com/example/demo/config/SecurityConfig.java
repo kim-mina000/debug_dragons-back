@@ -77,7 +77,7 @@ public class SecurityConfig {
          .authorizeHttpRequests()
          .requestMatchers("/member/**","/login","/landmark/**","/lc/**","/course/**",
 				 "/landmarkComment/list","/landmarkLike/list", "/landmarkLike/likes/{landmarkNo}",
-				 "/bookmark/register", "/bookmark/delete", "/bookmark/read"
+				 "/bookmark/register", "/bookmark/delete", "/bookmark/read","/bookmark/readByNo"
 				 ).permitAll()
 //				.requestMatchers("/landmark/**").hasRole("USER")
 //				근데 쌤이거 hasRole("USER")만 해놓으면 시큐리티 서비스가 Role정보가 어딧는지 알고 어캐찾는거에요 이거 ..
