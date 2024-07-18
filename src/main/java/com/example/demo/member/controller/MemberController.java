@@ -103,4 +103,5 @@ public class MemberController {
         Member member = service.updateMember(dto.getUserId(), dto);
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
+    
 }

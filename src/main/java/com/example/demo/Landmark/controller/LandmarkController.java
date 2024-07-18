@@ -61,7 +61,7 @@ public class LandmarkController {
     }
 
 // landmarkOrigin=2 인 값 가져오기
-    @GetMapping("/lookaround")
+    @PostMapping("/lookaround")
     public ResponseEntity<List> readByOrigin2 (){
         List<LandmarkDTO> list = landmarkService.getListByOrigin(2);
 
