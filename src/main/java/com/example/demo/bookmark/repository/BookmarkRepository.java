@@ -12,4 +12,8 @@ public interface BookmarkRepository extends JpaRepository<Bookmark, Integer> {
 
     @Query("SELECT B FROM Bookmark B WHERE B.member = :member")
     List<Bookmark> findByUserId(@Param("member") Member member);
+
+    @Query("SELECT B FROM Bookmark B WHERE B.landmark = :no")
+    List<Bookmark> findAllById(@Param("no") int no);
+
 }

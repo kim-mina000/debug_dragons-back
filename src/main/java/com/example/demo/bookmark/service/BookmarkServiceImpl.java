@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,5 +40,17 @@ public class BookmarkServiceImpl implements BookmarkService {
                 .collect(Collectors.toList());
 
         return list;
+    }
+
+    @Override
+    public List<BookmarkDTO>  readAllByNo(int no) {
+        List<Bookmark> result = repository.findAllById(no);
+        if(!result.isEmpty()){
+            List<BookmarkDTO> list = result.stream()
+                    .map(entity -> entityTodto(entity))
+                    .collect(Collectors.toList());
+            return list;
+        }
+        return null;
     }
 }

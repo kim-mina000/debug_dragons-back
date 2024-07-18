@@ -56,4 +56,11 @@ public class BookmarkController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping("/readByNo")
+    public ResponseEntity<List> readAllByNo(@RequestParam(name = "no") int no){
+        List<BookmarkDTO> list = service.readAllByNo(no);
+
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
 }

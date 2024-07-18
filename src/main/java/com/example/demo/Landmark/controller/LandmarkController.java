@@ -2,10 +2,12 @@ package com.example.demo.Landmark.controller;
 
 import com.example.demo.Landmark.dto.LandmarkDTO;
 import com.example.demo.Landmark.service.LandmarkService;
+import com.example.demo.Util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,9 @@ public class LandmarkController {
 
     @Autowired
     LandmarkService landmarkService;
+
+    @Autowired
+    FileUtil fileUtil;
 
     @ResponseBody
     @PostMapping("/register")
@@ -78,6 +83,20 @@ public class LandmarkController {
         }
 
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @ResponseBody
+    @PostMapping("/upload")
+    public ResponseEntity<String> uploadImg(@RequestParam("file") MultipartFile file,@RequestParam("no")int no ){
+
+        LandmarkDTO landmarkDTO = landmarkService.read(no);
+        String url = fileUtil.fileUpload(file);
+        landmarkDTO.setLandmarkImgPath(url);
+
+        landmarkService.register(landmarkDTO);
+
+
+        return new ResponseEntity<>(url, HttpStatus.OK);
     }
 
 }

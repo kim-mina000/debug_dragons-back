@@ -18,6 +18,9 @@ public interface BookmarkService {
 //    조회
     List<BookmarkDTO> read(String id);
 
+//    no로 조회
+    List<BookmarkDTO> readAllByNo(int no);
+
 
     default Bookmark dtoToEntity(BookmarkDTO dto){
 
