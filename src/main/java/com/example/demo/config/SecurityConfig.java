@@ -67,7 +67,7 @@ public class SecurityConfig {
 
 		// 1.인증 필터 등록: /member 또는 /board 요청이 들어오면 사용자 인증 실행
 
-		String[] arr = {"/landmarkComment/register", "/landmarkComment/remove", "/course/**", "/landmarkLike/isLike", "/bookmark/*","/bookmark/readByNo"};
+		String[] arr = {"/landmarkComment/register", "/landmarkComment/remove", "/course/**", "/landmarkLike/isLike","/bookmark/*"};
 
 		http.addFilterBefore(new ApiCheckFilter(arr, jwtUtil(), customUserDetailsService()), UsernamePasswordAuthenticationFilter.class);
 
@@ -76,8 +76,8 @@ public class SecurityConfig {
 		http
          .authorizeHttpRequests()
          .requestMatchers("/member/**","/login","/landmark/**","/lc/**","/course/**",
-				 "/landmarkComment/list","/landmarkLike/list", "/landmarkLike/likes/{landmarkNo}",
-				 "/bookmark/register", "/bookmark/delete", "/bookmark/read"
+				 "/landmarkComment/list","/landmarkLike/list", "/landmarkLike/likes/{landmarkNo}"
+//				 "/bookmark/register", "/bookmark/delete", "/bookmark/read","/bookmark/readByNo"
 				 ).permitAll()
 //				.requestMatchers("/landmark/**").hasRole("USER")
 //				근데 쌤이거 hasRole("USER")만 해놓으면 시큐리티 서비스가 Role정보가 어딧는지 알고 어캐찾는거에요 이거 ..
